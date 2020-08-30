@@ -19,17 +19,41 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/triviz_tgtq" />-->
 
+    <!--<com.airbnb.lottie.LottieAnimationView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/creativitycomes_from_within" />-->
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animationView"
+        android:layout_width="415dp"
+        android:layout_height="182dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.859"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/questions_and_answer" />
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottieAnimationView"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
-        app:lottie_rawRes="@raw/loading_animation"
-        tools:layout_editor_absoluteX="0dp" />
+        app:lottie_rawRes="@raw/loading_animation" />
 
     <TextView
         android:id="@+id/textView"
@@ -39,13 +63,15 @@
         android:layout_marginTop="296dp"
         android:layout_marginEnd="57dp"
         android:gravity="center"
-        android:shadowColor="#000000"
-        android:shadowDx="1.2"
-        android:shadowDy="1.2"
+        android:shadowColor="#AB8266FF"
+        android:shadowDx="5.0"
+        android:shadowDy="5.0"
+        android:shadowRadius="5.0"
         android:text="TRIVIZ"
         android:textColor="#FFFFFF"
         android:textSize="60sp"
         android:textStyle="bold"
+        android:typeface="monospace"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent"
@@ -53,15 +79,22 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="347dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="32dp"
+        android:layout_width="389dp"
+        android:layout_height="63dp"
+        android:layout_marginStart="25dp"
         android:layout_marginTop="1dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="25dp"
         android:gravity="center"
+        android:shadowDx="5.0"
+        android:shadowDy="5.0"
+        android:shadowRadius="5.0"
         android:text="THE GREAT TRIVIA QUIZ"
         android:textColor="#FAF8F8"
-        android:textSize="30sp"
+        android:textSize="28sp"
+        android:shadowColor="#AB8266FF"
+        android:textStyle="bold"
+        android:typeface="monospace"
+        app:layout_constraintBottom_toTopOf="@+id/lottieAnimationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
