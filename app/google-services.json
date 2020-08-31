@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "739943412927",
+    "firebase_url": "https://trivizthegreattriviaquiz.firebaseio.com",
+    "project_id": "trivizthegreattriviaquiz",
+    "storage_bucket": "trivizthegreattriviaquiz.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:739943412927:android:4864ffcdbc5fbf202c420a",
+        "android_client_info": {
+          "package_name": "com.tekstorm.trivizthegreattriviaquiz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "739943412927-kgh9qd74mb93p9roskav8jn6m6c9cnpk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4UpzGv8JkbZ0KXVAiHxmc1piHGyB72Ak"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "739943412927-kgh9qd74mb93p9roskav8jn6m6c9cnpk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
