@@ -20,7 +20,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class Login extends AppCompatActivity {
 
-    EditText emailText, passwordText;
+    EditText emailText, passwordText,resetPassword_email;
     private FirebaseAuth mAuth;
     String email,password;
     @Override
@@ -65,6 +65,19 @@ public class Login extends AppCompatActivity {
                             FirebaseUser user = mAuth.getCurrentUser();
                             startActivity(new Intent(Login.this,MainActivity.class));
 
+                            FirebaseAuth auth = FirebaseAuth.getInstance();
+                            String emailAddress = "anusha267@gmail.com";
+
+                            auth.sendPasswordResetEmail(emailAddress)
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()) {
+                                                Log.d("TAG", "Email sent.");
+                                            }
+                                        }
+                                    });
+
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w("signin", "signInWithEmail:failure", task.getException());
@@ -82,6 +95,13 @@ public class Login extends AppCompatActivity {
     public void signUp(View view) {
 
         startActivity(new Intent(Login.this,SignUp.class));
+
+    }
+
+
+    public void forgotPassword(View view) {
+        ResetPassword resetPassword=new ResetPassword();
+        resetPassword.show(getSupportFragmentManager(),"Reset Password");
 
     }
 }

@@ -2,7 +2,11 @@ package com.tekstorm.trivizthegreattriviaquiz;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,5 +23,10 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    }
+    public void signout(View view)
+    {
+        FirebaseAuth.getInstance().signOut();
+        startActivity(new Intent(MainActivity.this, Login.class));
     }
 }

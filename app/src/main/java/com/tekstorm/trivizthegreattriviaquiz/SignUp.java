@@ -44,6 +44,18 @@ public class SignUp extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             FirebaseUser user = mAuth.getCurrentUser();
+                            user.sendEmailVerification()
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()) {
+                                                Log.d("Email Verification", "Email sent.");
+                                            }
+                                        }
+                                    });
+
+
+
                             startActivity(new Intent(SignUp.this,MainActivity.class));
                         } else {
                             // If sign in fails, display a message to the user.

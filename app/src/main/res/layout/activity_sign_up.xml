@@ -106,7 +106,7 @@
             />
 
         <Button
-            android:id="@+id/signin_btn"
+            android:id="@+id/signup_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/signin_signup_button"

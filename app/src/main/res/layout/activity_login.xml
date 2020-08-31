@@ -83,8 +83,27 @@
             android:textStyle="bold"
             android:inputType="textPassword"
             android:textSize="22sp"
-            android:layout_marginBottom="35dp"
+            android:layout_marginBottom="5dp"
             />
+
+
+
+        <TextView
+            android:id="@+id/forgot_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Forgot Password?"
+            android:textSize="20sp"
+            android:onClick="forgotPassword"
+            android:textColor="@android:color/white"
+            android:shadowColor="#C48266FF"
+            android:shadowDx="5.0"
+            android:shadowDy="5.0"
+            android:shadowRadius="5.0"
+            android:fontFamily="sans-serif-medium"
+            android:layout_marginBottom="40dp"/>
+
+
 
 <Button
     android:id="@+id/signin_btn"
