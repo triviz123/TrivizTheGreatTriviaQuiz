@@ -4,18 +4,153 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    >
+    tools:context=".MainActivity" android:background="@drawable/main_background">
 
 
-    <Button
-        android:id="@+id/sign_out"
-        android:layout_width="266dp"
-        android:layout_height="100dp"
-        android:onClick="signout"
-        android:text="Sign Out"
-        app:layout_constraintBottom_toBottomOf="parent"
+
+
+
+
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animationView"
+        android:layout_width="412dp"
+        android:layout_height="220dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toTopOf="@+id/linearlayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.859"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/questions_and_answer" />
+
+
+
+
+    <LinearLayout
+        android:id="@+id/linearlayout"
+        android:layout_width="388dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TRIVIZ"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textSize="60sp"
+            android:shadowColor="#C48266FF"
+            android:shadowDx="5.0"
+            android:shadowDy="5.0"
+            android:shadowRadius="5.0"
+            android:fontFamily="@font/bau93"
+
+            />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="THE GREAT TRIVIA QUIZ"
+            android:textSize="30sp"
+            android:textColor="@android:color/white"
+            android:shadowColor="#C48266FF"
+            android:shadowDx="5.0"
+            android:layout_marginHorizontal="20dp"
+            android:gravity="center"
+            android:shadowDy="5.0"
+            android:shadowRadius="5.0"
+            android:fontFamily="@font/bau93"
+            android:layout_marginBottom="25dp"/>
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/white_button"
+            android:paddingVertical="20dp"
+            android:text="PLAY"
+            android:textSize="25sp"
+            android:layout_marginHorizontal="50dp"
+            android:textColor="#E8FF85BE"
+            android:textStyle="bold"
+            android:fontFamily="@font/obsessed_halloween"
+            android:layout_marginBottom="20dp"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/white_button"
+            android:paddingVertical="20dp"
+            android:text="CATEGORIES"
+            android:textSize="25sp"
+            android:fontFamily="@font/obsessed_halloween"
+            android:layout_marginHorizontal="50dp"
+            android:textColor="#E8FF85BE"
+            android:textStyle="bold"
+            android:layout_marginBottom="20dp"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/white_button"
+            android:paddingVertical="20dp"
+            android:text="HIGHSCORE"
+            android:fontFamily="@font/obsessed_halloween"
+            android:textSize="25sp"
+            android:layout_marginHorizontal="50dp"
+            android:textColor="#E8FF85BE"
+            android:textStyle="bold"
+            android:layout_marginBottom="20dp"
+            />
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/white_button"
+            android:paddingVertical="20dp"
+            android:text="SIGN OUT"
+            android:textSize="25sp"
+            android:fontFamily="@font/obsessed_halloween"
+            android:layout_marginHorizontal="50dp"
+            android:textColor="#E8FF85BE"
+            android:textStyle="bold"
+            android:onClick="signout"
+            android:layout_marginBottom="60dp"
+            />
+
+    </LinearLayout>
+
+
+
+
+
+
+
+
+
+    <!--<Button
+        android:id="@+id/sign_out"
+        android:layout_width="148dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="2dp"
+
+        android:text="Sign Out"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />-->
 </androidx.constraintlayout.widget.ConstraintLayout>
