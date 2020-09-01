@@ -11,10 +11,12 @@
         android:id="@+id/settings"
         android:layout_width="40dp"
         android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
         android:onClick="settings_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/settings"/>
+        app:srcCompat="@drawable/settings" />
 
 
 
@@ -83,16 +85,16 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/white_button"
+            android:fontFamily="@font/be_honest"
+            android:onClick="playButton"
             android:paddingVertical="20dp"
             android:text="PLAY"
-            android:textSize="30sp"
-            android:layout_marginHorizontal="50dp"
             android:textColor="#E8FF85BE"
-            android:textStyle="bold"
-            android:fontFamily="@font/be_honest"
-            android:layout_marginBottom="20dp"
-            />
+            android:textSize="30sp"
+            android:textStyle="bold" />
 
         <Button
             android:layout_width="match_parent"
@@ -101,6 +103,7 @@
             android:paddingVertical="20dp"
             android:text="CATEGORIES"
             android:textSize="30sp"
+            android:onClick="openCategory"
             android:fontFamily="@font/be_honest"
             android:layout_marginHorizontal="50dp"
             android:textColor="#E8FF85BE"

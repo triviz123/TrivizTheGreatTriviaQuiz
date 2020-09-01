@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -33,5 +34,18 @@ public class MainActivity extends AppCompatActivity {
     public void settings_view(View view) {
 
 
+    }
+
+    public void openCategory(View view) {
+        startActivity(new Intent(MainActivity.this,Categories.class));
+    }
+
+
+    public void playButton(View view)
+    {
+        if (Categories.cat=="")
+        {
+            Toast.makeText(this, "Please select a category first!!!", Toast.LENGTH_SHORT).show();
+        }
     }
 }
