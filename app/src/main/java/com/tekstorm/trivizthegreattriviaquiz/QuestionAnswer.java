@@ -21,7 +21,7 @@ public class QuestionAnswer extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question_answer);
 
-        JSONtoQues j=new JSONtoQues("https://opentdb.com/api.php?amount=10", this);
+        JSONtoQues j=new JSONtoQues("https://opentdb.com/api.php?amount=10&type=multiple", this);
 
 
 
