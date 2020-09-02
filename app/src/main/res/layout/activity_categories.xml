@@ -45,37 +45,40 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:paddingBottom="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textView3">
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_gravity="center_horizontal"
+            android:orientation="vertical"
             app:layout_constraintTop_toBottomOf="@id/textView3">
 
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Entertainment :"
+                android:fontFamily="@font/be_honest"
                 android:paddingLeft="30dp"
-                android:textSize="25sp"
                 android:shadowColor="#C48266FF"
                 android:shadowDx="5.0"
                 android:shadowDy="5.0"
                 android:shadowRadius="5.0"
+                android:text="Entertainment :"
                 android:textColor="#FFFFFF"
-                android:textStyle="bold"
-                android:fontFamily="@font/be_honest"/>
+                android:textSize="25sp"
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="20dp"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/button1"
@@ -86,13 +89,13 @@
                     android:layout_weight="1"
                     android:background="@drawable/white_button"
                     android:gravity="center"
-                    android:text="Books"
                     android:onClick="categorySelect"
-                    android:tag="10"
                     android:paddingHorizontal="10dp"
+                    android:tag="10"
+                    android:text="Books"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="14sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
 
                 <TextView
@@ -104,12 +107,12 @@
                     android:layout_weight="1"
                     android:background="@drawable/white_button"
                     android:gravity="center"
-                    android:tag="11"
                     android:onClick="categorySelect"
+                    android:paddingHorizontal="10dp"
+                    android:tag="11"
                     android:text="Films and Television"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="14sp"
-                    android:paddingHorizontal="10dp"
                     android:textStyle="bold" />
 
 
@@ -122,154 +125,151 @@
                     android:layout_weight="1"
                     android:background="@drawable/white_button"
                     android:gravity="center"
-                    android:text="Music"
                     android:onClick="categorySelect"
-                    android:tag="12"
                     android:paddingHorizontal="10dp"
+                    android:tag="12"
+                    android:text="Music"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
 
-
             </LinearLayout>
-
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginHorizontal="20dp"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp">
-
-            <TextView
-                android:id="@+id/button4"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginEnd="10dp"
-                android:layout_weight="1"
-                android:background="@drawable/white_button"
-                android:gravity="center"
-                android:tag="13"
-                android:onClick="categorySelect"
-                android:paddingHorizontal="10dp"
-                android:text="Musical &#38; Theatre"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-
-            <TextView
-                android:id="@+id/button5"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginEnd="10dp"
-                android:layout_weight="1"
-                android:background="@drawable/white_button"
-                android:gravity="center"
-                android:tag="15"
-                android:onClick="categorySelect"
-                android:paddingHorizontal="10dp"
-                android:text="Video Game"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-
-            <TextView
-                android:id="@+id/button6"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginEnd="10dp"
-                android:layout_weight="1"
-                android:background="@drawable/white_button"
-                android:gravity="center"
-                android:onClick="categorySelect"
-                android:paddingHorizontal="10dp"
-                android:text="Board Game"
-                android:tag="16"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginHorizontal="20dp"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp">
-
-            <TextView
-                android:id="@+id/button7"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginEnd="10dp"
-                android:layout_weight="1"
-                android:background="@drawable/white_button"
-                android:gravity="center"
-                android:tag="26"
-                android:onClick="categorySelect"
-                android:paddingHorizontal="10dp"
-                android:text="Celebrity"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-
-            <TextView
-                android:id="@+id/button8"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginEnd="10dp"
-                android:layout_weight="1"
-                android:background="@drawable/white_button"
-                android:gravity="center"
-                android:tag="31"
-                android:onClick="categorySelect"
-                android:paddingHorizontal="10dp"
-                android:text="Anime &#38; Manga"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-
-            <TextView
-                android:id="@+id/button9"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginEnd="10dp"
-                android:layout_weight="1"
-                android:background="@drawable/white_button"
-                android:gravity="center"
-                android:tag="32"
-                android:onClick="categorySelect"
-                android:paddingHorizontal="10dp"
-                android:text="Cartoon &#38; Animation"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="20dp"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/button4"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/white_button"
+                    android:gravity="center"
+                    android:onClick="categorySelect"
+                    android:paddingHorizontal="10dp"
+                    android:tag="13"
+                    android:text="Musical &#38; Theatre"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:id="@+id/button5"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/white_button"
+                    android:gravity="center"
+                    android:onClick="categorySelect"
+                    android:paddingHorizontal="10dp"
+                    android:tag="15"
+                    android:text="Video Game"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:id="@+id/button6"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/white_button"
+                    android:gravity="center"
+                    android:onClick="categorySelect"
+                    android:paddingHorizontal="10dp"
+                    android:tag="16"
+                    android:text="Board Game"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/button7"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/white_button"
+                    android:gravity="center"
+                    android:onClick="categorySelect"
+                    android:paddingHorizontal="10dp"
+                    android:tag="26"
+                    android:text="Celebrity"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:id="@+id/button8"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/white_button"
+                    android:gravity="center"
+                    android:onClick="categorySelect"
+                    android:paddingHorizontal="10dp"
+                    android:tag="31"
+                    android:text="Anime &#38; Manga"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:id="@+id/button9"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/white_button"
+                    android:gravity="center"
+                    android:onClick="categorySelect"
+                    android:paddingHorizontal="10dp"
+                    android:tag="32"
+                    android:text="Cartoon &#38; Animation"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/button10"
@@ -282,8 +282,8 @@
                     android:gravity="center"
                     android:onClick="categorySelect"
                     android:paddingHorizontal="10dp"
-                    android:text="Comics"
                     android:tag="29"
+                    android:text="Comics"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -298,9 +298,9 @@
                     android:layout_weight="1"
                     android:background="@drawable/white_button"
                     android:gravity="center"
-                    android:tag="14"
                     android:onClick="categorySelect"
                     android:paddingHorizontal="10dp"
+                    android:tag="14"
                     android:text="Television"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="14sp"
@@ -318,35 +318,35 @@
                     android:gravity="center"
                     android:paddingHorizontal="10dp"
                     android:text="Random"
-                    android:visibility="invisible"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:visibility="invisible" />
 
             </LinearLayout>
 
-        <TextView
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Science :"
-                android:paddingLeft="30dp"
-                android:textSize="25sp"
                 android:layout_marginTop="30dp"
-                android:textColor="#FFFFFF"
-                android:textStyle="bold"
+                android:fontFamily="@font/be_honest"
+                android:paddingLeft="30dp"
                 android:shadowColor="#C48266FF"
                 android:shadowDx="5.0"
                 android:shadowDy="5.0"
                 android:shadowRadius="5.0"
-                android:fontFamily="@font/be_honest"/>
+                android:text="Science :"
+                android:textColor="#FFFFFF"
+                android:textSize="25sp"
+                android:textStyle="bold" />
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="20dp"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/button12"
@@ -357,10 +357,10 @@
                     android:layout_weight="1"
                     android:background="@drawable/white_button"
                     android:gravity="center"
-                    android:tag="17"
-                    android:paddingHorizontal="10dp"
-                    android:text="Nature"
                     android:onClick="categorySelect"
+                    android:paddingHorizontal="10dp"
+                    android:tag="17"
+                    android:text="Nature"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -375,10 +375,10 @@
                     android:layout_weight="1"
                     android:background="@drawable/white_button"
                     android:gravity="center"
-                    android:paddingHorizontal="10dp"
-                    android:text="Computer"
-                    android:tag="18"
                     android:onClick="categorySelect"
+                    android:paddingHorizontal="10dp"
+                    android:tag="18"
+                    android:text="Computer"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -393,10 +393,10 @@
                     android:layout_weight="1"
                     android:background="@drawable/white_button"
                     android:gravity="center"
-                    android:paddingHorizontal="10dp"
-                    android:text="Mathematics"
-                    android:tag="19"
                     android:onClick="categorySelect"
+                    android:paddingHorizontal="10dp"
+                    android:tag="19"
+                    android:text="Mathematics"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -407,8 +407,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="20dp"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/button15"
@@ -421,8 +421,8 @@
                     android:gravity="center"
                     android:onClick="categorySelect"
                     android:paddingHorizontal="10dp"
-                    android:text="Gadgets"
                     android:tag="30"
+                    android:text="Gadgets"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -435,14 +435,14 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginEnd="10dp"
                     android:layout_weight="1"
-                    android:visibility="invisible"
                     android:background="@drawable/white_button"
                     android:gravity="center"
                     android:paddingHorizontal="10dp"
                     android:text="Television"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:visibility="invisible" />
 
 
                 <TextView
@@ -456,10 +456,10 @@
                     android:gravity="center"
                     android:paddingHorizontal="10dp"
                     android:text="Random"
-                    android:visibility="invisible"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:visibility="invisible" />
 
             </LinearLayout>
 
@@ -467,25 +467,25 @@
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Others :"
-                android:paddingLeft="30dp"
-                android:textSize="25sp"
                 android:layout_marginTop="30dp"
-                android:textColor="#FFFFFF"
-                android:textStyle="bold"
+                android:fontFamily="@font/be_honest"
+                android:paddingLeft="30dp"
                 android:shadowColor="#C48266FF"
                 android:shadowDx="5.0"
                 android:shadowDy="5.0"
                 android:shadowRadius="5.0"
-                android:fontFamily="@font/be_honest"/>
+                android:text="Others :"
+                android:textColor="#FFFFFF"
+                android:textSize="25sp"
+                android:textStyle="bold" />
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="20dp"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/button16"
@@ -496,9 +496,9 @@
                     android:layout_weight="1"
                     android:background="@drawable/white_button"
                     android:gravity="center"
-                    android:tag="9"
                     android:onClick="categorySelect"
                     android:paddingHorizontal="10dp"
+                    android:tag="9"
                     android:text="General Knowledge"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="14sp"
@@ -514,10 +514,10 @@
                     android:layout_weight="1"
                     android:background="@drawable/white_button"
                     android:gravity="center"
-                    android:paddingHorizontal="10dp"
-                    android:text="Mythology"
-                    android:tag="20"
                     android:onClick="categorySelect"
+                    android:paddingHorizontal="10dp"
+                    android:tag="20"
+                    android:text="Mythology"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -532,10 +532,10 @@
                     android:layout_weight="1"
                     android:background="@drawable/white_button"
                     android:gravity="center"
-                    android:paddingHorizontal="10dp"
-                    android:text="Sports"
-                    android:tag="21"
                     android:onClick="categorySelect"
+                    android:paddingHorizontal="10dp"
+                    android:tag="21"
+                    android:text="Sports"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -546,8 +546,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="20dp"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/button19"
@@ -558,10 +558,10 @@
                     android:layout_weight="1"
                     android:background="@drawable/white_button"
                     android:gravity="center"
-                    android:paddingHorizontal="10dp"
-                    android:text="Geography"
-                    android:tag="22"
                     android:onClick="categorySelect"
+                    android:paddingHorizontal="10dp"
+                    android:tag="22"
+                    android:text="Geography"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -576,10 +576,10 @@
                     android:layout_weight="1"
                     android:background="@drawable/white_button"
                     android:gravity="center"
-                    android:paddingHorizontal="10dp"
-                    android:text="History"
-                    android:tag="23"
                     android:onClick="categorySelect"
+                    android:paddingHorizontal="10dp"
+                    android:tag="23"
+                    android:text="History"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -594,10 +594,10 @@
                     android:layout_weight="1"
                     android:background="@drawable/white_button"
                     android:gravity="center"
-                    android:paddingHorizontal="10dp"
-                    android:text="Politics"
-                    android:tag="24"
                     android:onClick="categorySelect"
+                    android:paddingHorizontal="10dp"
+                    android:tag="24"
+                    android:text="Politics"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -608,8 +608,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="20dp"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/button22"
@@ -620,10 +620,10 @@
                     android:layout_weight="1"
                     android:background="@drawable/white_button"
                     android:gravity="center"
-                    android:paddingHorizontal="10dp"
-                    android:text="Art"
                     android:onClick="categorySelect"
+                    android:paddingHorizontal="10dp"
                     android:tag="25"
+                    android:text="Art"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -638,10 +638,10 @@
                     android:layout_weight="1"
                     android:background="@drawable/white_button"
                     android:gravity="center"
-                    android:paddingHorizontal="10dp"
-                    android:text="Animals"
                     android:onClick="categorySelect"
+                    android:paddingHorizontal="10dp"
                     android:tag="27"
+                    android:text="Animals"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -656,10 +656,10 @@
                     android:layout_weight="1"
                     android:background="@drawable/white_button"
                     android:gravity="center"
-                    android:paddingHorizontal="10dp"
-                    android:text="Vehicles"
                     android:onClick="categorySelect"
+                    android:paddingHorizontal="10dp"
                     android:tag="28"
+                    android:text="Vehicles"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -669,37 +669,38 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Are up for a brave enough?"
-                android:textSize="25sp"
-                android:gravity="center"
                 android:layout_marginTop="30dp"
-                android:textColor="#FFFFFF"
-                android:textStyle="bold"
+                android:fontFamily="@font/be_honest"
+                android:gravity="center"
                 android:shadowColor="#C48266FF"
                 android:shadowDx="5.0"
                 android:shadowDy="5.0"
                 android:shadowRadius="5.0"
-                android:fontFamily="@font/be_honest"/>
+                android:text="Are You brave enough?"
+                android:textColor="#FFFFFF"
+                android:textSize="25sp"
+                android:textStyle="bold" />
 
 
             <TextView
                 android:id="@+id/button25"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_marginTop="10dp"
+                android:layout_height="60dp"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="50dp"
                 android:layout_weight="1"
                 android:background="@drawable/white_button"
                 android:gravity="center"
-                android:tag="0"
                 android:onClick="categorySelect"
                 android:paddingHorizontal="30dp"
+                android:tag="0"
+                android:paddingVertical="10dp"
                 android:text="TRIVIZ ULTIMATE QUIZ CHALLENGE"
-                android:layout_marginBottom="50dp"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="14sp"
                 android:textStyle="bold" />
         </LinearLayout>
-</ScrollView>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

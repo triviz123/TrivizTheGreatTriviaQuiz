@@ -12,15 +12,18 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class Categories extends AppCompatActivity {
-    static String cat="";
     SharedPreferences i;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categories);
-        if (pinkText!=null) {
-            pinkText.setBackgroundResource(R.drawable.pink_button);
-            pinkText.setTextColor(Color.WHITE);
+        Log.d("cat",StaticConstants.cat);
+
+        if (StaticConstants.pinkText!=null) {
+            Log.d("buttonId",String.valueOf(StaticConstants.pinkText.getTag()));
+            TextView button=findViewById(StaticConstants.pinkText.getId());
+            button.setBackgroundResource(R.drawable.pink_button);
+            button.setTextColor(Color.WHITE);
         }
 
     }
@@ -28,9 +31,10 @@ public class Categories extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if (pinkText!=null) {
-            pinkText.setBackgroundResource(R.drawable.pink_button);
-            pinkText.setTextColor(Color.WHITE);
+        if (StaticConstants.pinkText!=null) {
+            TextView button=findViewById(StaticConstants.pinkText.getId());
+            StaticConstants.pinkText.setBackgroundResource(R.drawable.pink_button);
+            StaticConstants.pinkText.setTextColor(Color.WHITE);
         }
     }
 
@@ -43,8 +47,8 @@ public class Categories extends AppCompatActivity {
     public void categorySelect(View view) {
 
         TextView button=(TextView) view;
-        cat=button.getTag().toString();
-        pinkText=button;
+        StaticConstants.cat=button.getTag().toString();
+        StaticConstants.pinkText=button;
         for (int i = 1; i <= 25; i++) {
                 TextView changeButton = (TextView) findViewById(getResources().getIdentifier("button" + i, "id",
                         this.getPackageName()));
@@ -53,6 +57,6 @@ public class Categories extends AppCompatActivity {
             }
         button.setBackgroundResource(R.drawable.pink_button);
         button.setTextColor(Color.WHITE);
-        Log.d("jakj",cat);
+        Log.d("jakj",StaticConstants.cat);
     }
 }

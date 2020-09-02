@@ -43,9 +43,15 @@ public class MainActivity extends AppCompatActivity {
 
     public void playButton(View view)
     {
-        if (Categories.cat=="")
+        if (StaticConstants.cat.equals(""))
         {
             Toast.makeText(this, "Please select a category first!!!", Toast.LENGTH_SHORT).show();
         }
+    }
+
+
+    @Override
+    public void onBackPressed() {
+
     }
 }

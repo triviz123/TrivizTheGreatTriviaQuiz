@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -48,10 +49,17 @@ public class Login extends AppCompatActivity {
     }
 
     public void signIn(View view) {
-
+        LottieAnimationView animationView=(LottieAnimationView) findViewById(R.id.lottieAnimationView);
+        animationView.setVisibility(View.VISIBLE);
+        Button signInButton=findViewById(R.id.signin_btn);
+        signInButton.setVisibility(View.GONE);
         email=emailText.getText().toString();
         password=passwordText.getText().toString();
         if(email.equals("") || password.equals("")){
+
+            signInButton.setVisibility(View.VISIBLE);
+
+            animationView.setVisibility(View.GONE);
             Toast.makeText(this, "Please enter your email address and password!", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -79,6 +87,10 @@ public class Login extends AppCompatActivity {
                                     });
 
                         } else {
+                            Button signInButton=findViewById(R.id.signin_btn);
+                            signInButton.setVisibility(View.VISIBLE);
+                            LottieAnimationView animationView=(LottieAnimationView) findViewById(R.id.lottieAnimationView);
+                            animationView.setVisibility(View.GONE);
                             // If sign in fails, display a message to the user.
                             Log.w("signin", "signInWithEmail:failure", task.getException());
                             Toast.makeText(Login.this, "Error! No record found!",
@@ -102,6 +114,10 @@ public class Login extends AppCompatActivity {
     public void forgotPassword(View view) {
         ResetPassword resetPassword=new ResetPassword();
         resetPassword.show(getSupportFragmentManager(),"Reset Password");
+
+    }
+    @Override
+    public void onBackPressed() {
 
     }
 }
