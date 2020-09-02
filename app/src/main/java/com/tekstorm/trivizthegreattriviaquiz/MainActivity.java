@@ -24,7 +24,9 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
     }
+
     public void signout(View view)
     {
         FirebaseAuth.getInstance().signOut();
@@ -46,7 +48,11 @@ public class MainActivity extends AppCompatActivity {
         if (StaticConstants.cat.equals(""))
         {
             Toast.makeText(this, "Please select a category first!!!", Toast.LENGTH_SHORT).show();
+            return;
         }
+
+        startActivity(new Intent(MainActivity.this,QuestionAnswer.class));
+
     }
 
 
