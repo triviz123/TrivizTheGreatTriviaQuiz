@@ -4,6 +4,8 @@ import android.content.Context;
 import android.text.Html;
 import android.text.Spanned;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -22,15 +24,15 @@ public class JSONtoQues {
     String urlString="";
     Context context;
     String[][] arr;
-
     public JSONtoQues(String urlString, Context context) {
         this.urlString = urlString;
         this.context=context;
         arr=new String[10][5];
-        getQues();
+        getQuesBank();
+
     }
 
-    private void getQues() {
+    private void getQuesBank() {
         RequestQueue requestQueue= Volley.newRequestQueue(context);
         JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, urlString, null, new Response.Listener<JSONObject>() {
 
@@ -47,58 +49,49 @@ public class JSONtoQues {
             }
         });
         requestQueue.add(jsonObjectRequest);
+
     }
 
     public void jsonParser(JSONObject response)
     {
         try {
             String s = response.getString("results");
-            Log.d("hfdh", s);
             JSONArray jsonArray = new JSONArray(s);
             for (int i = 0; i < 10; i++) {
                 JSONObject jsonObject=jsonArray.getJSONObject(i);
                 arr[i][0]=jsonObject.getString("question");
                 arr[i][1]=jsonObject.getString("correct_answer");
                 JSONArray jsonArray1 = jsonObject.getJSONArray("incorrect_answers");
-                for(JsonValue value : arrObj){
-                    System.out.println(value.toString());
+                String[] str_arr = new String[jsonArray1.length()];
+                for(int j = 0; j < 3; j++) {
+
+                    str_arr[j] = jsonArray1.getString(j);
+                    Spanned spanned = Html.fromHtml(str_arr[j]);
+                    str_arr[j] = spanned.toString();
+                    Log.d("hhg",str_arr[j]);
                 }
 
-                String[] s=str.split("//;';");
-               /* int c=0; String h=str.substring(2,str.length()-2);
-                c=str.indexOf(",");
-                arr[i][2]=h.substring(0,c-3);
-                arr[i][3]=h.substring(c,str.lastIndexOf(",")-3);
-                arr[i][4]=h.substring(str.lastIndexOf(","));*/
                 Spanned spanned = Html.fromHtml(arr[i][0]);
-                arr[i][2] = spanned.toString();
+                arr[i][0] = spanned.toString();
                 spanned = Html.fromHtml(arr[i][1]);
-                arr[i][2] = spanned.toString();
+                arr[i][1] = spanned.toString();
                 spanned = Html.fromHtml(arr[i][2]);
                 arr[i][2] = spanned.toString();
+                spanned = Html.fromHtml(arr[i][3]);
+                arr[i][3] = spanned.toString();
+                spanned = Html.fromHtml(arr[i][4]);
+                arr[i][4] = spanned.toString();
 
-                //arr[i][2]=str.substring()
-
-
-                /*arr[i][2]=str[0];
-                arr[i][3]=str[1];
-                arr[i][4]=str[2];
-                for(int k=0;k<10; k++)
-                {
-                    for(int l=0;l<5; l++) {
-                        Log.d("jhg", arr[k][l]);
-                    }
-                }*/
-                Log.d("hhg",arr[i][2]);
-                Log.d("hhg",arr[i][3]);
-                Log.d("hhg",arr[i][4]);
             }
+
+
         }
         catch (Exception e)
         {
            Log.d("Error", Objects.requireNonNull(e.getMessage()));
         }
     }
+
 
 
     }
