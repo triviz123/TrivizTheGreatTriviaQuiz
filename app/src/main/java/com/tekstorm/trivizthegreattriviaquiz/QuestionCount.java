@@ -43,6 +43,22 @@ public class QuestionCount extends AppCompatDialogFragment {
         saveButton=(Button) view.findViewById(R.id.save);
 
 
+        if (StaticConstants.numberOfQuestions.equals("10")) {
+            button1.setBackgroundResource(R.drawable.pink_button);
+            button1.setTextColor(Color.WHITE);
+        }
+        else if(StaticConstants.numberOfQuestions.equals("20"))
+        {
+            button2.setBackgroundResource(R.drawable.pink_button);
+            button2.setTextColor(Color.WHITE);
+        }
+        else
+        {
+            button3.setBackgroundResource(R.drawable.pink_button);
+            button3.setTextColor(Color.WHITE);
+        }
+
+
         saveButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
