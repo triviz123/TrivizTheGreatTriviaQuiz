@@ -24,10 +24,12 @@ public class JSONtoQues {
     String urlString="";
     Context context;
     String[][] arr;
-    public JSONtoQues(String urlString, Context context) {
+    View view;
+    public JSONtoQues(String urlString, Context context, View view) {
         this.urlString = urlString;
         this.context=context;
         arr=new String[10][5];
+        this.view=view;
         getQuesBank();
 
     }

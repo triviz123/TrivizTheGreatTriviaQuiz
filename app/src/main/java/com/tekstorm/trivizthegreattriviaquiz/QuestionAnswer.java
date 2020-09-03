@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -22,15 +24,11 @@ public class QuestionAnswer extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question_answer);
 
-        JSONtoQues j=new JSONtoQues("https://opentdb.com/api.php?amount=10&type=multiple", this);
+        JSONtoQues j=new JSONtoQues("https://opentdb.com/api.php?amount=10&type=multiple", this, view);
+        ProgressBar progressBar=findViewById(R.id.progressBar);
 
+    }
 
-
-
-
-
-
-
-
+    public void backToMain(View view) {
     }
 }
