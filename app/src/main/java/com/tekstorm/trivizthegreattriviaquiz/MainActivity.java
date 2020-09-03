@@ -60,4 +60,11 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
 
     }
+
+
+
+    public void questionCount(View view) {
+        QuestionCount questionCount=new QuestionCount();
+        questionCount.show(getSupportFragmentManager(),"Question Count");
+    }
 }

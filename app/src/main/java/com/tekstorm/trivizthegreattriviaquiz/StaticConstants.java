@@ -6,6 +6,8 @@ import android.widget.TextView;
 public class StaticConstants{
     @SuppressLint("StaticFieldLeak")
     public static TextView pinkText=null;
+    public static TextView pinkText1=null;
     public static String cat="";
+    public static String numberOfQuestions="10";
 
 }

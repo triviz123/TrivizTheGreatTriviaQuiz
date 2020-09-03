@@ -114,7 +114,8 @@
                 android:background="@drawable/white_button"
                 android:fontFamily="@font/be_honest"
                 android:paddingVertical="20dp"
-                android:text="HIGHSCORE"
+                android:text="Question Count"
+                android:onClick="questionCount"
                 android:textColor="#E8FF85BE"
                 android:textSize="30sp"
                 android:textStyle="bold" />
@@ -129,7 +130,7 @@
                 android:fontFamily="@font/be_honest"
                 android:onClick="signout"
                 android:paddingVertical="20dp"
-                android:text="SIGN OUT"
+                android:text="HIGHSCORE"
                 android:textColor="#E8FF85BE"
                 android:textSize="30sp"
                 android:textStyle="bold" />

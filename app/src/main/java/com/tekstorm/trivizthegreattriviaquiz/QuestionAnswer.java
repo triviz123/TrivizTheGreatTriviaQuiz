@@ -24,8 +24,8 @@ public class QuestionAnswer extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question_answer);
 
-        JSONtoQues j=new JSONtoQues("https://opentdb.com/api.php?amount=10&type=multiple", this, view);
-        ProgressBar progressBar=findViewById(R.id.progressBar);
+        //JSONtoQues j=new JSONtoQues("https://opentdb.com/api.php?amount=10&type=multiple", this);
+        //ProgressBar progressBar=findViewById(R.id.progressBar);
 
     }
 
