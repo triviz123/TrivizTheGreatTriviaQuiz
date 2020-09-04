@@ -73,19 +73,6 @@ public class Login extends AppCompatActivity {
                             FirebaseUser user = mAuth.getCurrentUser();
                             startActivity(new Intent(Login.this,MainActivity.class));
 
-                            FirebaseAuth auth = FirebaseAuth.getInstance();
-                            String emailAddress = "anusha267@gmail.com";
-
-                            auth.sendPasswordResetEmail(emailAddress)
-                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
-                                            if (task.isSuccessful()) {
-                                                Log.d("TAG", "Email sent.");
-                                            }
-                                        }
-                                    });
-
                         } else {
                             Button signInButton=findViewById(R.id.signin_btn);
                             signInButton.setVisibility(View.VISIBLE);

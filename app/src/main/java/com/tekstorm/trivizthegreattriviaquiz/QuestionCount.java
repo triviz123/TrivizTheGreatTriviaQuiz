@@ -9,18 +9,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
-import androidx.core.content.ContextCompat;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Objects;
 
@@ -44,17 +37,17 @@ public class QuestionCount extends AppCompatDialogFragment {
 
 
         if (StaticConstants.numberOfQuestions.equals("10")) {
-            button1.setBackgroundResource(R.drawable.pink_button);
+            button1.setBackgroundResource(R.drawable.signin_signup_button);
             button1.setTextColor(Color.WHITE);
         }
         else if(StaticConstants.numberOfQuestions.equals("20"))
         {
-            button2.setBackgroundResource(R.drawable.pink_button);
+            button2.setBackgroundResource(R.drawable.signin_signup_button);
             button2.setTextColor(Color.WHITE);
         }
         else
         {
-            button3.setBackgroundResource(R.drawable.pink_button);
+            button3.setBackgroundResource(R.drawable.signin_signup_button);
             button3.setTextColor(Color.WHITE);
         }
 
@@ -117,7 +110,7 @@ public class QuestionCount extends AppCompatDialogFragment {
             button1.setBackgroundResource(R.drawable.white_border_button);
             button1.setTextColor(Color.parseColor("#FF8FB8"));
         }
-        button.setBackgroundResource(R.drawable.pink_button);
+        button.setBackgroundResource(R.drawable.signin_signup_button);
         button.setTextColor(Color.WHITE);
         Log.d("jakj",StaticConstants.numberOfQuestions);
     }
