@@ -10,14 +10,17 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Categories extends AppCompatActivity {
     SharedPreferences i;
+    static int c1=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categories);
         Log.d("cat",StaticConstants.cat);
+
 
         if (StaticConstants.pinkText!=null) {
             Log.d("buttonId",String.valueOf(StaticConstants.pinkText.getTag()));
@@ -45,9 +48,17 @@ public class Categories extends AppCompatActivity {
 
 
     public void categorySelect(View view) {
-
+        if(c1==0)
+        {
+            c1=1;
+        }
         TextView button=(TextView) view;
         StaticConstants.cat=button.getTag().toString();
+        if(StaticConstants.cat.equals("0"))
+        {
+            Toast.makeText(this, "The default value of question count for this category is 30.", Toast.LENGTH_SHORT).show();
+            StaticConstants.numberOfQuestions="30";
+        }
         StaticConstants.pinkText=button;
         for (int i = 1; i <= 25; i++) {
                 TextView changeButton = (TextView) findViewById(getResources().getIdentifier("button" + i, "id",

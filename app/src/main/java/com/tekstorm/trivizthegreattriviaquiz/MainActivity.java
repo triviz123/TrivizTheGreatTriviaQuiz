@@ -9,20 +9,14 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+import static java.lang.Thread.sleep;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-
-
-
-
-
-
 
 
     }
@@ -35,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void settings_view(View view) {
 
+        Settings settings=new Settings();
+        settings.show(getSupportFragmentManager(),"Settings");
 
     }
 
@@ -45,13 +41,30 @@ public class MainActivity extends AppCompatActivity {
 
     public void playButton(View view)
     {
-        if (StaticConstants.cat.equals(""))
+        if(Categories.c1==0 && QuestionCount.c2==0)
         {
-            Toast.makeText(this, "Please select a category first!!!", Toast.LENGTH_SHORT).show();
-            return;
+            Toast.makeText(this, "Default Category is Triviz Ultimate Quiz Challenge and default question count is 30.", Toast.LENGTH_SHORT).show();
         }
+        if(Categories.c1==0 && QuestionCount.c2!=0)
+        {
+            Toast.makeText(this, "Default Category is Triviz Ultimate Quiz Challenge.", Toast.LENGTH_SHORT).show();
+        }
+        if(QuestionCount.c2==0 && Categories.c1!=0)
+        {
+            Toast.makeText(this, "Default question count is 30.", Toast.LENGTH_SHORT).show();
+        }
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
 
-        startActivity(new Intent(MainActivity.this,QuestionAnswer.class));
+                try {
+                    sleep(750);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                startActivity(new Intent(MainActivity.this,QuestionAnswer.class));
+            }
+        }).start();
 
     }
 

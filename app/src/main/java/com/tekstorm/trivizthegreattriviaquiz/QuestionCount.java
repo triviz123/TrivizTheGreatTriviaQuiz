@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
@@ -20,6 +22,7 @@ import java.util.Objects;
 public class QuestionCount extends AppCompatDialogFragment {
     TextView button1,button2, button3;
     Button saveButton;
+    static int c2=0;
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
@@ -40,7 +43,7 @@ public class QuestionCount extends AppCompatDialogFragment {
             button1.setBackgroundResource(R.drawable.signin_signup_button);
             button1.setTextColor(Color.WHITE);
         }
-        else if(StaticConstants.numberOfQuestions.equals("20"))
+        else if(StaticConstants.numberOfQuestions.equals("15"))
         {
             button2.setBackgroundResource(R.drawable.signin_signup_button);
             button2.setTextColor(Color.WHITE);
@@ -86,6 +89,17 @@ public class QuestionCount extends AppCompatDialogFragment {
 
 
     public void countSelect(View view) {
+        if(c2==0)
+        {
+            c2=1;
+        }
+        if(StaticConstants.cat.equals("0"))
+        {
+            Toast.makeText(getContext(), "The default value of question count for The Ultimate Quiz Challenge is 30.", Toast.LENGTH_SHORT).show();
+            StaticConstants.numberOfQuestions="30";
+            dismiss();
+            return;
+        }
 
         TextView button=(TextView) view;
         StaticConstants.numberOfQuestions=button.getTag().toString();
@@ -97,7 +111,7 @@ public class QuestionCount extends AppCompatDialogFragment {
             button3.setBackgroundResource(R.drawable.white_border_button);
             button3.setTextColor(Color.parseColor("#FF8FB8"));
         }
-        else if(button.getTag().toString().equals("20"))
+        else if(button.getTag().toString().equals("15"))
         {
             button1.setBackgroundResource(R.drawable.white_border_button);
             button1.setTextColor(Color.parseColor("#FF8FB8"));

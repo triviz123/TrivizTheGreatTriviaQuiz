@@ -62,8 +62,8 @@
                 android:background="@drawable/white_border_button"
                 android:gravity="center"
                 android:paddingHorizontal="10dp"
-                android:tag="20"
-                android:text="20"
+                android:tag="15"
+                android:text="15"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="14sp"
                 android:textStyle="bold" />
@@ -78,8 +78,8 @@
                 android:background="@drawable/white_border_button"
                 android:gravity="center"
                 android:paddingHorizontal="10dp"
-                android:tag="30"
-                android:text="30"
+                android:tag="20"
+                android:text="20"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="14sp"
                 android:textStyle="bold" />

@@ -14,6 +14,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -27,6 +28,8 @@ import org.json.JSONObject;
 import java.util.Objects;
 import java.util.Random;
 
+import static java.lang.Thread.sleep;
+
 public class QuestionAnswer extends AppCompatActivity {
     String url="";
     String[][] arr;
@@ -37,28 +40,51 @@ public class QuestionAnswer extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_question_answer);
-        arr=new String[Integer.parseInt(StaticConstants.numberOfQuestions)][5];
+        setContentView(R.layout.loading_or_error);
         if(StaticConstants.cat.equals("0")) {
             url = "https://opentdb.com/api.php?amount=30&difficulty=hard&type=multiple";
+            StaticConstants.numberOfQuestions="30";
         }
         else
         {
             url="https://opentdb.com/api.php?amount="+StaticConstants.numberOfQuestions+"&category="+StaticConstants.cat+"&type=multiple";
         }
+        arr=new String[Integer.parseInt(StaticConstants.numberOfQuestions)][5];
         RequestQueue requestQueue= Volley.newRequestQueue(this);
         JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response) {
                 Log.d("dasdash",response.toString());
+
+                setContentView(R.layout.activity_question_answer);
                 jsonParser(response);
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+
+                setContentView(R.layout.loading_or_error);
+                LottieAnimationView anim=findViewById(R.id.loadView);
+                anim.setVisibility(View.INVISIBLE);
+                LottieAnimationView anim2=findViewById(R.id.loadingView);
+                anim2.setVisibility(View.INVISIBLE);
+                LottieAnimationView anim1=findViewById(R.id.errorView);
+                anim1.setVisibility(View.VISIBLE);
                 error.printStackTrace();
                 Log.d("hsah","That didn't work!");
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            sleep(3000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        startActivity(new Intent(QuestionAnswer.this,MainActivity.class));
+                    }
+                }).start();
+
             }
         });
         requestQueue.add(jsonObjectRequest);
