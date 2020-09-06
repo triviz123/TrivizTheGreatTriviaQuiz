@@ -37,12 +37,16 @@ public class QuestionAnswer extends AppCompatActivity {
     String[][] arr;
     int quesNumber=0;
     TextView question,answer1,answer2,answer3, answer4, quesNum,scoreView;
-    int score=0;
+    static int score=0;
     static CountDownTimer timer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.loading_or_error);
+        answer1=findViewById(R.id.answer1);
+        answer2=findViewById(R.id.answer2);
+        answer3=findViewById(R.id.answer3);
+        answer4=findViewById(R.id.answer4);
         if(StaticConstants.cat.equals("0")) {
             url = "https://opentdb.com/api.php?amount=30&difficulty=hard&type=multiple";
             StaticConstants.numberOfQuestions="30";
@@ -111,9 +115,8 @@ public class QuestionAnswer extends AppCompatActivity {
 
 
 
-    public void display(String[] s)
+    public void display( String[] s)
     {
-
         quesNum=findViewById(R.id.question_number);
         scoreView=findViewById(R.id.score);
         question=findViewById(R.id.question);
@@ -129,6 +132,10 @@ public class QuestionAnswer extends AppCompatActivity {
         answer2.setText(s[2]);
         answer3.setText(s[3]);
         answer4.setText(s[4]);
+        answer1.setBackgroundResource(R.drawable.answer_buttons);
+        answer2.setBackgroundResource(R.drawable.answer_buttons);
+        answer3.setBackgroundResource(R.drawable.answer_buttons);
+        answer4.setBackgroundResource(R.drawable.answer_buttons);
         timer.start();
 
     }
@@ -207,7 +214,8 @@ public class QuestionAnswer extends AppCompatActivity {
                 }
                 else
                 {
-                    startActivity(new Intent(QuestionAnswer.this,MainActivity.class));
+                    ScoreCard scoreCard=new ScoreCard();
+                    scoreCard.show(getSupportFragmentManager(),"Your Score");
                 }
             }
         };
@@ -244,22 +252,34 @@ public class QuestionAnswer extends AppCompatActivity {
 
     public void checkAnswer(View view) {
         timer.cancel();
-        TextView answerSelected=(TextView) view;
+        final TextView answerSelected=(TextView) view;
         if(answerSelected.getText().toString().equals(arr[quesNumber][1]))
         {
             score+=10;
-        }
-
-        if(quesNumber<Integer.parseInt(StaticConstants.numberOfQuestions)-1)
-        {
-            quesNumber++;
-            gameController();
+            answerSelected.setBackgroundResource(R.drawable.correct_answer);
 
         }
         else
         {
-            startActivity(new Intent(QuestionAnswer.this,MainActivity.class));
+            answerSelected.setBackgroundResource(R.drawable.wrong_answer);
+
         }
+
+                if(quesNumber<Integer.parseInt(StaticConstants.numberOfQuestions)-1)
+                {
+                    quesNumber++;
+                    gameController();
+
+                }
+                else
+                {
+                    ScoreCard scoreCard=new ScoreCard();
+                    scoreCard.show(getSupportFragmentManager(),"Your Score");
+                }
+
+
+
+
 
     }
 
@@ -275,7 +295,8 @@ public class QuestionAnswer extends AppCompatActivity {
         }
         else
         {
-            startActivity(new Intent(QuestionAnswer.this,MainActivity.class));
+            ScoreCard scoreCard=new ScoreCard();
+            scoreCard.show(getSupportFragmentManager(),"Your Score");
         }
 
     }
