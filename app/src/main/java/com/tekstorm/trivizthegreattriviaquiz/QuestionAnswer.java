@@ -10,6 +10,8 @@ import android.text.Html;
 import android.text.Spanned;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,7 +38,7 @@ public class QuestionAnswer extends AppCompatActivity {
     int quesNumber=0;
     TextView question,answer1,answer2,answer3, answer4, quesNum,scoreView;
     int score=0;
-    CountDownTimer timer;
+    static CountDownTimer timer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,15 +94,18 @@ public class QuestionAnswer extends AppCompatActivity {
     }
 
     public void backToMain(View view) {
-        timer.cancel();
-        startActivity(new Intent(QuestionAnswer.this,MainActivity.class));
+        AreYouSure areYouSure=new AreYouSure();
+        areYouSure.show(getSupportFragmentManager(),"Are You Sure");
 
     }
 
 
 
     @Override
-    public void onBackPressed() { }
+    public void onBackPressed() {
+        AreYouSure areYouSure=new AreYouSure();
+        areYouSure.show(getSupportFragmentManager(),"Are You Sure");
+    }
 
 
 
@@ -108,6 +113,7 @@ public class QuestionAnswer extends AppCompatActivity {
 
     public void display(String[] s)
     {
+
         quesNum=findViewById(R.id.question_number);
         scoreView=findViewById(R.id.score);
         question=findViewById(R.id.question);
@@ -124,6 +130,7 @@ public class QuestionAnswer extends AppCompatActivity {
         answer3.setText(s[3]);
         answer4.setText(s[4]);
         timer.start();
+
     }
 
 
@@ -188,7 +195,6 @@ public class QuestionAnswer extends AppCompatActivity {
             @Override
             public void onTick(long i)
             {
-
                 timer.setText(String.valueOf(i/1000));
             }
 
@@ -197,7 +203,6 @@ public class QuestionAnswer extends AppCompatActivity {
             public void onFinish() {
                 if(quesNumber<Integer.parseInt(StaticConstants.numberOfQuestions)-1) {
                     quesNumber++;
-                    timer.setText("10");
                     gameController();
                 }
                 else

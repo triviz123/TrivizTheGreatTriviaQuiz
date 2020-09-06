@@ -51,7 +51,8 @@ public class MainActivity extends AppCompatActivity {
         }
         if(QuestionCount.c2==0 && Categories.c1!=0)
         {
-            Toast.makeText(this, "Default question count is 30.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Default question count is 10.", Toast.LENGTH_SHORT).show();
+            StaticConstants.numberOfQuestions="10";
         }
         new Thread(new Runnable() {
             @Override
