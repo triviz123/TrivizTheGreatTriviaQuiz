@@ -2,6 +2,7 @@ package com.tekstorm.trivizthegreattriviaquiz;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,6 +24,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.Objects;
+
 public class ChangeNickname extends AppCompatDialogFragment {
         private EditText new_nickname;
         Button changenickname;
@@ -34,9 +37,9 @@ public class ChangeNickname extends AppCompatDialogFragment {
             AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());
             db = FirebaseFirestore.getInstance();
             LayoutInflater inflater=getActivity().getLayoutInflater();
-            View view=inflater.inflate(R.layout.forgot_password_dialog,null);
+            View view=inflater.inflate(R.layout.changenickname,null);
             builder.setView(view);
-
+            sharedPreferences = Objects.requireNonNull(getContext()).getSharedPreferences("com.tekstorm.trivizthegreattriviaquiz", Context.MODE_PRIVATE);
 
             new_nickname=view.findViewById(R.id.new_nickname);
             changenickname=(Button) view.findViewById(R.id.changenickname);
@@ -56,12 +59,15 @@ public class ChangeNickname extends AppCompatDialogFragment {
                                public void onSuccess(Void aVoid) {
                                    Log.d("TAG", "DocumentSnapshot successfully updated!");
                                    sharedPreferences.edit().putString("nickname",new_nickname.getText().toString()).apply();
+                                   Toast.makeText(getContext(), "Nickname successfully updated!", Toast.LENGTH_SHORT).show();
+                                   dismiss();
                                }
                            })
                            .addOnFailureListener(new OnFailureListener() {
                                @Override
                                public void onFailure(@NonNull Exception e) {
                                    Log.w("TAG", "Error updating document", e);
+                                   Toast.makeText(getContext(), "An error occured! Please try again!", Toast.LENGTH_SHORT).show();
                                }
                            });
                }

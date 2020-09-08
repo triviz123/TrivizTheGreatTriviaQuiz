@@ -76,4 +76,10 @@ public class MainActivity extends AppCompatActivity {
         QuestionCount questionCount=new QuestionCount();
         questionCount.show(getSupportFragmentManager(),"Question Count");
     }
+
+    public void change(View view) {
+        ChangeNickname changeNickname=new ChangeNickname();
+        changeNickname.show(getSupportFragmentManager(),"Change Nickname");
+
+    }
 }
