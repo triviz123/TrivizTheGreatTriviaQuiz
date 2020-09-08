@@ -43,6 +43,7 @@ public class QuestionAnswer extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.loading_or_error);
+        score=0;
         answer1=findViewById(R.id.answer1);
         answer2=findViewById(R.id.answer2);
         answer3=findViewById(R.id.answer3);

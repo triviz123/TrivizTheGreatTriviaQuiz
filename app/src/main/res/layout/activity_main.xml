@@ -128,7 +128,6 @@
                 android:layout_marginBottom="60dp"
                 android:background="@drawable/white_button"
                 android:fontFamily="@font/be_honest"
-                android:onClick="signout"
                 android:paddingVertical="20dp"
                 android:text="HIGHSCORE"
                 android:textColor="#E8FF85BE"
@@ -136,8 +135,6 @@
                 android:textStyle="bold" />
 
         </LinearLayout>
-
-
 
 
     <!--<Button

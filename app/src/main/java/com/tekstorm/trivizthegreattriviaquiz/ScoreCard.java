@@ -12,7 +12,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
+import com.google.firebase.firestore.FirebaseFirestore;
+
 public class ScoreCard extends AppCompatDialogFragment {
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
     Button mainButton;
     TextView scoreCard;
     @NonNull

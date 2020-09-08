@@ -23,7 +23,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:layout_marginHorizontal="40dp"
+
             android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
@@ -34,18 +34,18 @@
                 android:layout_marginEnd="10dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:onClick="categorySelect"
+
                 android:paddingHorizontal="10dp"
                 android:text="Settings"
                 android:textColor="#5C9DFF"
-                android:textSize="35sp"
+                android:textSize="30sp"
                 android:textStyle="bold" />
 
 
             <ImageView
                 android:id="@+id/close"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_gravity="center"
                 android:layout_marginEnd="10dp"
                 android:layout_weight=".13"
@@ -59,7 +59,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginHorizontal="40dp"
+            android:layout_marginHorizontal="30dp"
             android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
@@ -69,13 +69,12 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginEnd="10dp"
                 android:layout_weight="1"
-
                 android:gravity="center_vertical"
-                android:onClick="categorySelect"
+
                 android:paddingHorizontal="10dp"
                 android:text="Music"
                 android:textColor="#5C9DFF"
-                android:textSize="25sp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
 
@@ -86,13 +85,13 @@
                 android:layout_height="35dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginEnd="10dp"
-                android:layout_weight=".3"
+                android:layout_weight=".5"
                 android:background="@drawable/music_toggle"
                 android:gravity="center"
                 android:text="On"
                 android:paddingHorizontal="10dp"
                 android:textColor="@android:color/white"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
 
@@ -102,7 +101,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginHorizontal="40dp"
+            android:layout_marginHorizontal="30dp"
             android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
@@ -114,11 +113,11 @@
                 android:layout_weight="1"
 
                 android:gravity="center_vertical"
-                android:onClick="categorySelect"
+
                 android:paddingHorizontal="10dp"
                 android:text="Sound Effects"
                 android:textColor="#5C9DFF"
-                android:textSize="25sp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
 
@@ -129,61 +128,79 @@
                 android:layout_height="35dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginEnd="10dp"
-                android:layout_weight=".3"
+                android:layout_weight=".5"
                 android:background="@drawable/music_toggle"
                 android:gravity="center"
                 android:text="On"
                 android:paddingHorizontal="10dp"
                 android:textColor="@android:color/white"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
 
         </LinearLayout>
 
         <TextView
+            android:id="@+id/change_nickname"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:gravity="center_vertical"
-            android:onClick="categorySelect"
-            android:layout_marginHorizontal="50dp"
+
+            android:layout_marginHorizontal="40dp"
+            android:text="Change Nickname"
+            android:textColor="#5C9DFF"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="center_vertical"
+
+            android:layout_marginHorizontal="40dp"
             android:text="Help"
             android:textColor="#5C9DFF"
-            android:textSize="23sp"
-            android:textStyle="bold"/>
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:gravity="center_vertical"
-            android:onClick="categorySelect"
-            android:layout_marginHorizontal="50dp"
-            android:text="Licenses"
-            android:textColor="#5C9DFF"
-            android:textSize="23sp"
+            android:textSize="20sp"
             android:textStyle="bold"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:gravity="center_vertical"
-            android:onClick="categorySelect"
-            android:layout_marginHorizontal="50dp"
+
+            android:layout_marginHorizontal="40dp"
             android:text="Privacy Policy"
             android:textColor="#5C9DFF"
-            android:textSize="23sp"
+            android:textSize="20sp"
             android:textStyle="bold"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:gravity="center_vertical"
-            android:onClick="categorySelect"
-            android:layout_marginHorizontal="50dp"
+            android:layout_marginHorizontal="40dp"
             android:text="Credits and Attribution"
             android:textColor="#5C9DFF"
-            android:textSize="23sp"
-            android:textStyle="bold"/>
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="10dp"/>
+
+
+        <TextView
+            android:id="@+id/signout"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:onClick="categorySelect"
+            android:layout_marginHorizontal="80dp"
+            android:text="Sign out"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+
+            android:background="@drawable/music_toggle"
+            />
+
+
 
 
         <TextView
@@ -195,7 +212,7 @@
             android:layout_marginHorizontal="50dp"
             android:text="Made by Yugen Techlabs"
             android:textColor="#9C5C9DFF"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold"/>
 
 
