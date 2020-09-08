@@ -32,11 +32,14 @@
             android:id="@+id/new_nickname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email"
-            android:textColorHint="#FFA2C4"
+            android:hint="New nickname"
+            android:textColorHint="#B45C9DFF"
             android:textSize="13sp"
+            android:textColorHighlight="#B45C9DFF"
+            android:textColorLink="#B45C9DFF"
             android:textColor="#5C9DFF"
             android:textStyle="bold"
+            android:inputType="text"
             android:layout_marginBottom="20dp"
             android:layout_marginHorizontal="60dp"/>
 
