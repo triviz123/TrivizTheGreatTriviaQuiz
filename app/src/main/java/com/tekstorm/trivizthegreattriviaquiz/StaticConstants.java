@@ -9,5 +9,7 @@ public class StaticConstants{
     public static TextView pinkText1=null;
     public static String cat="0";
     public static String numberOfQuestions="10";
+    public static String email,user_nickname;
+
 
 }

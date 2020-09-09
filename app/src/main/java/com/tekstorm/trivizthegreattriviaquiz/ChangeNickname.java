@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -31,47 +32,56 @@ public class ChangeNickname extends AppCompatDialogFragment {
         Button changenickname;
     SharedPreferences sharedPreferences;
     FirebaseFirestore db;
+    View view;
+    TextView nickname;
         @NonNull
         @Override
         public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-            AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());
+            AlertDialog.Builder builder=new AlertDialog.Builder(getActivity(),R.style.CustomAlertDialog);
             db = FirebaseFirestore.getInstance();
             LayoutInflater inflater=getActivity().getLayoutInflater();
-            View view=inflater.inflate(R.layout.changenickname,null);
+            view=inflater.inflate(R.layout.changenickname,null);
             builder.setView(view);
             sharedPreferences = Objects.requireNonNull(getContext()).getSharedPreferences("com.tekstorm.trivizthegreattriviaquiz", Context.MODE_PRIVATE);
 
             new_nickname=view.findViewById(R.id.new_nickname);
             changenickname=(Button) view.findViewById(R.id.changenickname);
 
-           changenickname.setOnClickListener(new View.OnClickListener() {
-               @Override
-               public void onClick(View view) {
-                   String email=sharedPreferences.getString("email","");
-                   assert email != null;
-                   DocumentReference emailRef = db.collection("users").document(email);
+                changenickname.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (new_nickname.getText().toString().equals(""))
+                    {
+                        dismiss();
+                        return;
+                    }
+                    else {
+                        String email = sharedPreferences.getString("email", "");
+                        assert email != null;
+                        DocumentReference emailRef = db.collection("users").document(email);
 
 
-                   emailRef
-                           .update("nickname", new_nickname.getText().toString())
-                           .addOnSuccessListener(new OnSuccessListener<Void>() {
-                               @Override
-                               public void onSuccess(Void aVoid) {
-                                   Log.d("TAG", "DocumentSnapshot successfully updated!");
-                                   sharedPreferences.edit().putString("nickname",new_nickname.getText().toString()).apply();
-                                   Toast.makeText(getContext(), "Nickname successfully updated!", Toast.LENGTH_SHORT).show();
-                                   dismiss();
-                               }
-                           })
-                           .addOnFailureListener(new OnFailureListener() {
-                               @Override
-                               public void onFailure(@NonNull Exception e) {
-                                   Log.w("TAG", "Error updating document", e);
-                                   Toast.makeText(getContext(), "An error occured! Please try again!", Toast.LENGTH_SHORT).show();
-                               }
-                           });
-               }
-           });
+                        emailRef
+                                .update("nickname", new_nickname.getText().toString())
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        Log.d("TAG", "DocumentSnapshot successfully updated!");
+                                        sharedPreferences.edit().putString("nickname", new_nickname.getText().toString()).apply();
+                                        Toast.makeText(getContext(), "Nickname successfully updated!", Toast.LENGTH_SHORT).show();
+                                        dismiss();
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Log.w("TAG", "Error updating document", e);
+                                        Toast.makeText(getContext(), "An error occured! Please try again!", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                    }
+                    }
+                });
 
 
 

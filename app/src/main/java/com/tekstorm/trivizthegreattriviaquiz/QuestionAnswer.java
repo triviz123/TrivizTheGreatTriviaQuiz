@@ -65,7 +65,11 @@ public class QuestionAnswer extends AppCompatActivity {
                 Log.d("dasdash",response.toString());
 
                 setContentView(R.layout.activity_question_answer);
-                jsonParser(response);
+                try {
+                    jsonParser(response);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }, new Response.ErrorListener() {
             @Override
@@ -116,8 +120,11 @@ public class QuestionAnswer extends AppCompatActivity {
 
 
 
-    public void display( String[] s)
-    {
+    public void display( String[] s) throws InterruptedException {
+        /*if (quesNumber != 0) {
+            int x=delayThread();
+        }*/
+
         quesNum=findViewById(R.id.question_number);
         scoreView=findViewById(R.id.score);
         question=findViewById(R.id.question);
@@ -137,6 +144,7 @@ public class QuestionAnswer extends AppCompatActivity {
         answer2.setBackgroundResource(R.drawable.answer_buttons);
         answer3.setBackgroundResource(R.drawable.answer_buttons);
         answer4.setBackgroundResource(R.drawable.answer_buttons);
+
         timer.start();
 
     }
@@ -150,8 +158,7 @@ public class QuestionAnswer extends AppCompatActivity {
 
 
 
-    public void jsonParser(JSONObject response)
-    {
+    public void jsonParser(JSONObject response) throws InterruptedException {
         try {
             String s = response.getString("results");
             JSONArray jsonArray = new JSONArray(s);
@@ -191,7 +198,7 @@ public class QuestionAnswer extends AppCompatActivity {
        gameController();
     }
 
-    private void gameController() {
+    private void gameController() throws InterruptedException {
         startTimer();
         gameplay();
 
@@ -211,7 +218,11 @@ public class QuestionAnswer extends AppCompatActivity {
             public void onFinish() {
                 if(quesNumber<Integer.parseInt(StaticConstants.numberOfQuestions)-1) {
                     quesNumber++;
-                    gameController();
+                    try {
+                        gameController();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
                 else
                 {
@@ -228,7 +239,7 @@ public class QuestionAnswer extends AppCompatActivity {
 
 
 
-    private void gameplay() {
+    private void gameplay() throws InterruptedException {
         Random rand=new Random();
         int locationOfCorrectAnswer=rand.nextInt(4)+1;
         String[] s=new String[5];
@@ -251,7 +262,7 @@ public class QuestionAnswer extends AppCompatActivity {
         display(s);
     }
 
-    public void checkAnswer(View view) {
+    public void checkAnswer(View view) throws InterruptedException {
         timer.cancel();
         final TextView answerSelected=(TextView) view;
         if(answerSelected.getText().toString().equals(arr[quesNumber][1]))
@@ -259,12 +270,16 @@ public class QuestionAnswer extends AppCompatActivity {
             score+=10;
             answerSelected.setBackgroundResource(R.drawable.correct_answer);
 
+
         }
         else
         {
             answerSelected.setBackgroundResource(R.drawable.wrong_answer);
 
+
         }
+
+
 
                 if(quesNumber<Integer.parseInt(StaticConstants.numberOfQuestions)-1)
                 {
@@ -284,9 +299,13 @@ public class QuestionAnswer extends AppCompatActivity {
 
     }
 
+    private int delayThread() throws InterruptedException {
+        Thread.currentThread().sleep(1000);
+        return 1;
+    }
 
-    public void skip(View view)
-    {
+
+    public void skip(View view) throws InterruptedException {
         timer.cancel();
         if(quesNumber<Integer.parseInt(StaticConstants.numberOfQuestions)-1)
         {

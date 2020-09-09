@@ -35,6 +35,7 @@
             android:hint="New nickname"
             android:textColorHint="#B45C9DFF"
             android:textSize="13sp"
+            android:text=""
             android:textColorHighlight="#B45C9DFF"
             android:textColorLink="#B45C9DFF"
             android:textColor="#5C9DFF"

@@ -37,7 +37,7 @@ public class Login extends AppCompatActivity {
     private FirebaseAuth mAuth;
     String email,password;
     FirebaseFirestore db;
-    SharedPreferences sharedPreferences;
+    static SharedPreferences sharedPreferences;
     @Override
     protected void onStart() {
         super.onStart();

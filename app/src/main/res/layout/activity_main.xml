@@ -20,19 +20,19 @@
             app:srcCompat="@drawable/settings" />
 
 
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/animationView"
-            android:layout_width="412dp"
-            android:layout_height="220dp"
-            android:scaleType="fitCenter"
-            app:layout_constraintBottom_toTopOf="@+id/linearlayout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.859"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
-            app:lottie_rawRes="@raw/questions_and_answer" />
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animationView"
+        android:layout_width="385dp"
+        android:layout_height="180dp"
+        android:layout_marginTop="30dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toTopOf="@+id/linearlayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/questions_and_answer" />
 
 
         <LinearLayout
@@ -128,7 +128,6 @@
                 android:layout_marginBottom="60dp"
                 android:background="@drawable/white_button"
                 android:fontFamily="@font/be_honest"
-                android:onClick="change"
                 android:paddingVertical="20dp"
                 android:text="HIGHSCORE"
                 android:textColor="#E8FF85BE"
@@ -136,6 +135,32 @@
                 android:textStyle="bold" />
 
         </LinearLayout>
+
+    <TextView
+        android:id="@+id/nickname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/be_honest"
+        android:text="Nickname"
+        android:textColor="#FFFFFF"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:typeface="normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/edit"
+        android:layout_width="25dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="10dp"
+        android:onClick="change"
+        app:layout_constraintStart_toEndOf="@+id/nickname"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/edit" />
 
 
     <!--<Button

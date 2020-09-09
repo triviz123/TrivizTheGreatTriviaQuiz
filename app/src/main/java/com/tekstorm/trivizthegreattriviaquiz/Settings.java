@@ -39,7 +39,7 @@ public class Settings extends AppCompatDialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        builder=new AlertDialog.Builder(getActivity());
+        builder=new AlertDialog.Builder(getActivity(), R.style.CustomAlertDialog);
 
         inflater= Objects.requireNonNull(getActivity()).getLayoutInflater();
         view=inflater.inflate(R.layout.settings,null);
