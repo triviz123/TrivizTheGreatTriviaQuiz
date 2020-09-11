@@ -50,14 +50,14 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginBottom="40dp"
-                android:fontFamily="sans-serif-medium"
                 android:shadowColor="#C48266FF"
                 android:shadowDx="5.0"
                 android:shadowDy="5.0"
                 android:shadowRadius="5.0"
+                android:fontFamily="@font/m_semibold"
                 android:text="Welcome! Let's get you started."
                 android:textColor="@android:color/white"
-                android:textSize="24sp" />
+                android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/nickname"
@@ -67,13 +67,14 @@
                 android:layout_marginBottom="30dp"
                 android:background="@drawable/login_box"
                 android:hint="Nick Name"
+                android:fontFamily="@font/m_regular"
                 android:inputType="textEmailAddress"
                 android:paddingHorizontal="30dp"
                 android:paddingVertical="15dp"
                 android:text=""
                 android:textColor="@color/colorPrimary"
                 android:textColorHint="#83FD6FA3"
-                android:textSize="22sp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <EditText
@@ -84,13 +85,14 @@
                 android:layout_marginBottom="30dp"
                 android:background="@drawable/login_box"
                 android:hint="Email"
+                android:fontFamily="@font/m_regular"
                 android:inputType="textEmailAddress"
                 android:paddingHorizontal="30dp"
                 android:paddingVertical="15dp"
                 android:text=""
                 android:textColor="@color/colorPrimary"
                 android:textColorHint="#83FD6FA3"
-                android:textSize="22sp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <EditText
@@ -105,15 +107,16 @@
                 android:paddingHorizontal="30dp"
                 android:paddingVertical="15dp"
                 android:text=""
+                android:fontFamily="@font/m_regular"
                 android:textColor="@color/colorPrimary"
                 android:textColorHint="#83FD6FA3"
-                android:textSize="22sp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="40dp"
-                android:fontFamily="sans-serif-medium"
+                android:fontFamily="@font/m_regular"
                 android:shadowColor="#C48266FF"
                 android:shadowDx="5.0"
                 android:shadowDy="5.0"
@@ -147,8 +150,9 @@
                 android:onClick="signUp"
                 android:paddingVertical="20dp"
                 android:text="Sign Up"
+                android:fontFamily="@font/m_semibold"
                 android:textColor="@android:color/white"
-                android:textSize="25sp"
+                android:textSize="22sp"
                 android:textStyle="bold" />
 
 
@@ -157,7 +161,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="40dp"
-                android:fontFamily="sans-serif-medium"
+                android:fontFamily="@font/m_regular"
                 android:onClick="signIn"
                 android:shadowColor="#C48266FF"
                 android:shadowDx="5.0"

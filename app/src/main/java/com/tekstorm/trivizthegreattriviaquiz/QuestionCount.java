@@ -3,8 +3,11 @@ package com.tekstorm.trivizthegreattriviaquiz;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,10 +22,14 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 
 import java.util.Objects;
 
+import static android.content.Context.VIBRATOR_SERVICE;
+
 public class QuestionCount extends AppCompatDialogFragment {
     TextView button1,button2, button3;
     Button saveButton;
     static int c2=0;
+    private Vibrator myVib;
+    SharedPreferences sharedPreferences;
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
@@ -31,6 +38,9 @@ public class QuestionCount extends AppCompatDialogFragment {
         LayoutInflater inflater= Objects.requireNonNull(getActivity()).getLayoutInflater();
         View view=inflater.inflate(R.layout.question_count,null);
         builder.setView(view);
+
+        sharedPreferences = getContext().getSharedPreferences("com.tekstorm.trivizthegreattriviaquiz", Context.MODE_PRIVATE);
+        myVib = (Vibrator) getContext().getSystemService(VIBRATOR_SERVICE);
 
 
         button1=(TextView) view.findViewById(R.id.button1);
@@ -59,6 +69,12 @@ public class QuestionCount extends AppCompatDialogFragment {
 
             @Override
             public void onClick(View view) {
+                myVib.vibrate(30);
+                if(sharedPreferences.getString("soundToggle","").equals("0"))
+                {
+                    MediaPlayer buttonClick=MediaPlayer.create(getContext(), R.raw.button_click);
+                    buttonClick.start();
+                }
                 dismiss();
             }
 
@@ -89,6 +105,14 @@ public class QuestionCount extends AppCompatDialogFragment {
 
 
     public void countSelect(View view) {
+
+        myVib.vibrate(30);
+        if(sharedPreferences.getString("soundToggle","").equals("0"))
+        {
+            MediaPlayer buttonClick=MediaPlayer.create(getContext(), R.raw.button_click);
+            buttonClick.start();
+        }
+
         if(c2==0)
         {
             c2=1;

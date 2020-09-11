@@ -3,9 +3,13 @@ package com.tekstorm.trivizthegreattriviaquiz;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Vibrator;
 import android.text.Html;
 import android.text.Spanned;
 import android.util.Log;
@@ -30,19 +34,27 @@ import org.json.JSONObject;
 import java.util.Objects;
 import java.util.Random;
 
+import static java.lang.Thread.currentThread;
 import static java.lang.Thread.sleep;
 
 public class QuestionAnswer extends AppCompatActivity {
     String url="";
     String[][] arr;
+    static MediaPlayer gameplayMusic;
     int quesNumber=0;
     TextView question,answer1,answer2,answer3, answer4, quesNum,scoreView;
     static int score=0;
     static CountDownTimer timer;
+    private Vibrator myVib;
+    String[] s1;
+    SharedPreferences sharedPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.loading_or_error);
+        myVib = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
+        sharedPreferences = this.getSharedPreferences("com.tekstorm.trivizthegreattriviaquiz", Context.MODE_PRIVATE);
         score=0;
         answer1=findViewById(R.id.answer1);
         answer2=findViewById(R.id.answer2);
@@ -103,6 +115,13 @@ public class QuestionAnswer extends AppCompatActivity {
     }
 
     public void backToMain(View view) {
+        myVib.vibrate(30);
+        if(sharedPreferences.getString("soundToggle","").equals("0"))
+        {
+            MediaPlayer buttonClick=MediaPlayer.create(this, R.raw.button_click);
+            buttonClick.start();
+        }
+
         AreYouSure areYouSure=new AreYouSure();
         areYouSure.show(getSupportFragmentManager(),"Are You Sure");
 
@@ -112,8 +131,6 @@ public class QuestionAnswer extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        AreYouSure areYouSure=new AreYouSure();
-        areYouSure.show(getSupportFragmentManager(),"Are You Sure");
     }
 
 
@@ -124,39 +141,47 @@ public class QuestionAnswer extends AppCompatActivity {
         /*if (quesNumber != 0) {
             int x=delayThread();
         }*/
+         currentThread().sleep(500);
 
-        quesNum=findViewById(R.id.question_number);
-        scoreView=findViewById(R.id.score);
-        question=findViewById(R.id.question);
-        answer1=findViewById(R.id.answer1);
-        answer2=findViewById(R.id.answer2);
-        answer3=findViewById(R.id.answer3);
-        answer4=findViewById(R.id.answer4);
-        String str= (quesNumber+1) +"/"+StaticConstants.numberOfQuestions;
-        quesNum.setText(str);
-        scoreView.setText(String.valueOf(score));
-        question.setText(s[0]);
-        answer1.setText(s[1]);
-        answer2.setText(s[2]);
-        answer3.setText(s[3]);
-        answer4.setText(s[4]);
-        answer1.setBackgroundResource(R.drawable.answer_buttons);
-        answer2.setBackgroundResource(R.drawable.answer_buttons);
-        answer3.setBackgroundResource(R.drawable.answer_buttons);
-        answer4.setBackgroundResource(R.drawable.answer_buttons);
+                quesNum=findViewById(R.id.question_number);
+                scoreView=findViewById(R.id.score);
+                question=findViewById(R.id.question);
+                answer1=findViewById(R.id.answer1);
+                answer2=findViewById(R.id.answer2);
+                answer3=findViewById(R.id.answer3);
+                answer4=findViewById(R.id.answer4);
+                String str= (quesNumber+1) +"/"+StaticConstants.numberOfQuestions;
+                quesNum.setText(str);
+                scoreView.setText(String.valueOf(score));
+                question.setText(s[0]);
+                answer1.setText(s[1]);
+                answer2.setText(s[2]);
+                answer3.setText(s[3]);
+                answer4.setText(s[4]);
 
-        timer.start();
+                answer1.setBackgroundResource(R.drawable.answer_buttons);
+                answer2.setBackgroundResource(R.drawable.answer_buttons);
+                answer3.setBackgroundResource(R.drawable.answer_buttons);
+                answer4.setBackgroundResource(R.drawable.answer_buttons);
+
+                timer.start();
+
+
 
     }
 
 
-
-
-
-
-
-
-
+    @Override
+    protected void onStart() {
+        super.onStart();
+         SharedPreferences sharedPreferences = this.getSharedPreferences("com.tekstorm.trivizthegreattriviaquiz", Context.MODE_PRIVATE);
+        gameplayMusic= MediaPlayer.create(this, R.raw.gameplay_music);
+        if(sharedPreferences.getString("musicToggle","").equals("0"))
+        {
+            gameplayMusic.start();
+           gameplayMusic.setLooping(true);
+        }
+    }
 
     public void jsonParser(JSONObject response) throws InterruptedException {
         try {
@@ -259,12 +284,20 @@ public class QuestionAnswer extends AppCompatActivity {
             }
         }
         //Toast.makeText(this, arr[quesNumber][1], Toast.LENGTH_SHORT).show();
+
         display(s);
+
     }
 
     public void checkAnswer(View view) throws InterruptedException {
         timer.cancel();
-        final TextView answerSelected=(TextView) view;
+        myVib.vibrate(30);
+        if(sharedPreferences.getString("soundToggle","").equals("0"))
+        {
+            MediaPlayer buttonClick=MediaPlayer.create(this, R.raw.button_click);
+            buttonClick.start();
+        }
+        TextView answerSelected=(TextView) view;
         if(answerSelected.getText().toString().equals(arr[quesNumber][1]))
         {
             score+=10;
@@ -275,8 +308,6 @@ public class QuestionAnswer extends AppCompatActivity {
         else
         {
             answerSelected.setBackgroundResource(R.drawable.wrong_answer);
-
-
         }
 
 
@@ -291,6 +322,7 @@ public class QuestionAnswer extends AppCompatActivity {
                 {
                     ScoreCard scoreCard=new ScoreCard();
                     scoreCard.show(getSupportFragmentManager(),"Your Score");
+
                 }
 
 
@@ -307,6 +339,12 @@ public class QuestionAnswer extends AppCompatActivity {
 
     public void skip(View view) throws InterruptedException {
         timer.cancel();
+        myVib.vibrate(30);
+        if(sharedPreferences.getString("soundToggle","").equals("0"))
+        {
+            MediaPlayer buttonClick=MediaPlayer.create(this, R.raw.button_click);
+            buttonClick.start();
+        }
         if(quesNumber<Integer.parseInt(StaticConstants.numberOfQuestions)-1)
         {
             quesNumber++;

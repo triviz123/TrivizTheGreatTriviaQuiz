@@ -102,6 +102,7 @@ SharedPreferences sharedPreferences;
                                                         if (task.isSuccessful()) {
                                                             DocumentSnapshot document = task.getResult();
                                                             if (document.exists()) {
+                                                                sharedPreferences.edit().putString("musicToggle", "0").apply();
                                                                 String user_email=document.getString("email");
                                                                 String nickname=document.getString("nickname");
                                                                 Log.d("TAG", "DocumentSnapshot data: " + user_email);

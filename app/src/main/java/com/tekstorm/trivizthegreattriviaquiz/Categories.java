@@ -3,9 +3,12 @@ package com.tekstorm.trivizthegreattriviaquiz;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -15,11 +18,19 @@ import android.widget.Toast;
 public class Categories extends AppCompatActivity {
     SharedPreferences i;
     static int c1=0;
+    static MediaPlayer mainMusic;
+    private Vibrator myVib;
+    SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categories);
         Log.d("cat",StaticConstants.cat);
+
+        sharedPreferences = this.getSharedPreferences("com.tekstorm.trivizthegreattriviaquiz", Context.MODE_PRIVATE);
+        myVib = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
+
+
 
 
         if (StaticConstants.pinkText!=null) {
@@ -44,10 +55,35 @@ public class Categories extends AppCompatActivity {
     public void backToMain(View view)
     {
         super.onBackPressed();
+        myVib.vibrate(30);
+        if(sharedPreferences.getString("soundToggle","").equals("0"))
+        {
+            MediaPlayer buttonClick=MediaPlayer.create(this, R.raw.button_click);
+            buttonClick.start();
+        }
+        mainMusic.stop();
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        myVib.vibrate(30);
+        if(sharedPreferences.getString("soundToggle","").equals("0"))
+        {
+            MediaPlayer buttonClick=MediaPlayer.create(this, R.raw.button_click);
+            buttonClick.start();
+        }
+        mainMusic.stop();
+    }
 
     public void categorySelect(View view) {
+
+        myVib.vibrate(30);
+        if(sharedPreferences.getString("soundToggle","").equals("0"))
+        {
+            MediaPlayer buttonClick=MediaPlayer.create(this, R.raw.button_click);
+            buttonClick.start();
+        }
         if(c1==0)
         {
             c1=1;
@@ -69,5 +105,17 @@ public class Categories extends AppCompatActivity {
         button.setBackgroundResource(R.drawable.pink_button);
         button.setTextColor(Color.WHITE);
         Log.d("jakj",StaticConstants.cat);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        mainMusic=MediaPlayer.create(this, R.raw.main_menu_music);
+        if(sharedPreferences.getString("musicToggle","").equals("0"))
+        {
+            mainMusic.start();
+            mainMusic.setLooping(true);
+        }
     }
 }

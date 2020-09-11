@@ -56,6 +56,8 @@ public class Login extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         sharedPreferences = this.getSharedPreferences("com.tekstorm.trivizthegreattriviaquiz", Context.MODE_PRIVATE);
+
+
         emailText=findViewById(R.id.emailid);
         passwordText=findViewById(R.id.password);
 
@@ -88,8 +90,8 @@ public class Login extends AppCompatActivity {
                             FirebaseUser user = mAuth.getCurrentUser();
                             startActivity(new Intent(Login.this,MainActivity.class));
 
-
-
+                            sharedPreferences.edit().putString("musicToggle", "0").apply();
+                            sharedPreferences.edit().putString("soundToggle", "0").apply();
 
                             db.collection("users").document(email).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                                 @SuppressLint("CommitPrefEdits")
@@ -98,6 +100,7 @@ public class Login extends AppCompatActivity {
                                     if (task.isSuccessful()) {
                                         DocumentSnapshot document = task.getResult();
                                         if (document.exists()) {
+
                                             String user_email=document.getString("email");
                                             String nickname=document.getString("nickname");
                                             Log.d("TAG", "DocumentSnapshot data: " + user_email);
