@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +17,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import static android.content.Context.VIBRATOR_SERVICE;
@@ -57,11 +60,13 @@ public class ScoreCard extends AppCompatDialogFragment {
 
                 QuestionAnswer.gameplayMusic.stop();
 
-
+                addToDatabase();
 
 
                 //startActivity(new Intent(getContext(),MainActivity.class));
             }
+
+
         });
 
 
@@ -69,6 +74,50 @@ public class ScoreCard extends AppCompatDialogFragment {
         return builder.create();
     }
 
+    private void addToDatabase() {
+        FirebaseFirestore  db = FirebaseFirestore.getInstance();
+        String email=sharedPreferences.getString("email","");
+        Log.d("abc",email);
+        int newtotal=Integer.parseInt(StaticConstants.numberOfQuestions)+Integer.parseInt(StaticConstants.total);
+        int newcorrect=QuestionAnswer.corrects+Integer.parseInt(StaticConstants.correct);
+        int newskip=QuestionAnswer.skips+Integer.parseInt(StaticConstants.skip);
+        Log.d("abc",""+newcorrect+newskip+newtotal);
+        String newlevel;
+        if(newcorrect<10)
+        {
+            newlevel="Newbie";
+        }
+        else if(newcorrect < 50)
+        {
+            newlevel="Beginner";
+        }
+        else
+        {
+            newlevel="Pro";
+        }
+
+
+        db.collection("users").document(email).update(
+                "total",String.valueOf(newtotal),
+                "correct",String.valueOf(newcorrect),
+                "skip",String.valueOf(newskip),
+                "level",newlevel
+                ).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Log.d("yay", "DocumentSnapshot successfully updated!");
+                startActivity(new Intent(getContext(),MainActivity.class));
+            }
+        })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("nooo", "Error updating document", e);
+                    }
+                });
+
+
+    }
 
 
 }
