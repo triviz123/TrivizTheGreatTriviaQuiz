@@ -7,6 +7,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -88,7 +89,7 @@ public class Login extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("signin", "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            startActivity(new Intent(Login.this,MainActivity.class));
+
 
                             sharedPreferences.edit().putString("musicToggle", "0").apply();
                             sharedPreferences.edit().putString("soundToggle", "0").apply();
@@ -100,14 +101,15 @@ public class Login extends AppCompatActivity {
                                     if (task.isSuccessful()) {
                                         DocumentSnapshot document = task.getResult();
                                         if (document.exists()) {
-
                                             String user_email=document.getString("email");
                                             String nickname=document.getString("nickname");
-                                            Log.d("TAG", "DocumentSnapshot data: " + user_email);
-                                            sharedPreferences.edit().putString("email",user_email).apply();
+                                            sharedPreferences.edit().putString("musicToggle", "0").apply();
+                                            sharedPreferences.edit().putString("soundToggle", "0").apply();
+                                            Log.d("TAG", user_email);
+                                            sharedPreferences.edit().putString("email", user_email).apply();
                                             Log.d("share", "DocumentSnapshot data: " + sharedPreferences.getString("email",""));
-                                            Log.d("TAG", "DocumentSnapshot data: " + nickname);
-                                            sharedPreferences.edit().putString("nickname",nickname).apply();
+                                            Log.d("TAG", nickname);
+                                            sharedPreferences.edit().putString("nickname", nickname).apply();
                                             Log.d("share", "DocumentSnapshot data: " + sharedPreferences.getString("nickname",""));
                                         } else {
                                             Log.d("TAG", "No such document");
@@ -117,6 +119,8 @@ public class Login extends AppCompatActivity {
                                     }
                                 }
                             });
+
+                            startActivity(new Intent(Login.this,MainActivity.class));
 
                         } else {
                             Button signInButton=findViewById(R.id.signin_btn);
@@ -134,6 +138,14 @@ public class Login extends AppCompatActivity {
 
 
 
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(newBase);
+        final Configuration override = new Configuration(newBase.getResources().getConfiguration());
+        override.fontScale = 1.0f;
+        applyOverrideConfiguration(override);
     }
 
     public void signUp(View view) {

@@ -32,7 +32,7 @@
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animationView"
-        android:layout_width="412dp"
+        android:layout_width="match_parent"
         android:layout_height="256dp"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toTopOf="@+id/textView"
@@ -60,7 +60,7 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="325dp"
+        android:layout_width="match_parent"
         android:layout_height="98dp"
         android:layout_marginStart="64dp"
         android:layout_marginTop="325dp"
@@ -73,7 +73,7 @@
         android:shadowRadius="5.0"
         android:text="TRIVIZ"
         android:textColor="#FFFFFF"
-        android:textSize="80sp"
+        android:textSize="70sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -93,7 +93,7 @@
         android:shadowRadius="5.0"
         android:text="THE GREAT TRIVIA QUIZ"
         android:textColor="#FFFFFF"
-        android:textSize="28sp"
+        android:textSize="25sp"
         android:shadowColor="#C48266FF"
         android:textStyle="bold"
         android:fontFamily="@font/bau93"

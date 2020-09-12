@@ -34,11 +34,7 @@ public class Statistics extends AppCompatDialogFragment {
     LayoutInflater inflater;
     View view;
     AlertDialog.Builder builder;
-    private EditText new_nickname;
-    Button changenickname;
     SharedPreferences sharedPreferences;
-    FirebaseFirestore db;
-    TextView music_btn,sound_btn,help,privacy,credits;
     private Vibrator myVib;
 
 

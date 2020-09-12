@@ -4,26 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity" android:background="@drawable/main_background">
+    android:background="@drawable/main_background"
+    tools:context=".MainActivity">
 
 
-
-        <ImageView
-            android:id="@+id/settings"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:onClick="settings_view"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/settings" />
+    <ImageView
+        android:id="@+id/settings"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:onClick="settings_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/settings" />
 
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animationView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         android:layout_marginTop="40dp"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toTopOf="@+id/linearlayout"
@@ -35,107 +35,107 @@
         app:lottie_rawRes="@raw/questions_and_answer" />
 
 
-        <LinearLayout
-            android:id="@+id/linearlayout"
+    <LinearLayout
+        android:id="@+id/linearlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/bau93"
             android:gravity="center"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            android:shadowColor="#C48266FF"
+            android:shadowDx="5.0"
+            android:shadowDy="5.0"
+            android:shadowRadius="5.0"
+            android:text="TRIVIZ"
+            android:textColor="@android:color/white"
+            android:textSize="50sp"
+
+            />
 
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/bau93"
-                android:gravity="center"
-                android:shadowColor="#C48266FF"
-                android:shadowDx="5.0"
-                android:shadowDy="5.0"
-                android:shadowRadius="5.0"
-                android:text="TRIVIZ"
-                android:textColor="@android:color/white"
-                android:textSize="45sp"
-
-                />
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginBottom="25dp"
-                android:fontFamily="@font/bau93"
-                android:gravity="center"
-                android:shadowColor="#C48266FF"
-                android:shadowDx="5.0"
-                android:shadowDy="5.0"
-                android:shadowRadius="5.0"
-                android:text="THE GREAT TRIVIA QUIZ"
-                android:textColor="@android:color/white"
-                android:textSize="25sp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="25dp"
+            android:fontFamily="@font/bau93"
+            android:gravity="center"
+            android:shadowColor="#C48266FF"
+            android:shadowDx="5.0"
+            android:shadowDy="5.0"
+            android:shadowRadius="5.0"
+            android:text="THE GREAT TRIVIA QUIZ"
+            android:textColor="@android:color/white"
+            android:textSize="30sp" />
 
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="50dp"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/white_button"
-                android:fontFamily="@font/be_honest"
-                android:onClick="playButton"
-                android:paddingVertical="20dp"
-                android:text="PLAY"
-                android:textColor="#E8FF85BE"
-                android:textSize="25sp"
-                android:textStyle="bold" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/white_button"
+            android:fontFamily="@font/be_honest"
+            android:onClick="playButton"
+            android:paddingVertical="20dp"
+            android:text="PLAY"
+            android:textColor="#E8FF85BE"
+            android:textSize="25sp"
+            android:textStyle="bold" />
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="50dp"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/white_button"
-                android:fontFamily="@font/be_honest"
-                android:onClick="openCategory"
-                android:paddingVertical="20dp"
-                android:text="CATEGORIES"
-                android:textColor="#E8FF85BE"
-                android:textSize="25sp"
-                android:textStyle="bold" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/white_button"
+            android:fontFamily="@font/be_honest"
+            android:onClick="openCategory"
+            android:paddingVertical="20dp"
+            android:text="CATEGORIES"
+            android:textColor="#E8FF85BE"
+            android:textSize="25sp"
+            android:textStyle="bold" />
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="50dp"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/white_button"
-                android:fontFamily="@font/be_honest"
-                android:paddingVertical="20dp"
-                android:text="Question Count"
-                android:onClick="questionCount"
-                android:textColor="#E8FF85BE"
-                android:textSize="25sp"
-                android:textStyle="bold" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/white_button"
+            android:fontFamily="@font/be_honest"
+            android:onClick="questionCount"
+            android:paddingVertical="20dp"
+            android:text="Question Count"
+            android:textColor="#E8FF85BE"
+            android:textSize="25sp"
+            android:textStyle="bold" />
 
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="50dp"
-                android:layout_marginBottom="60dp"
-                android:background="@drawable/white_button"
-                android:fontFamily="@font/be_honest"
-                android:paddingVertical="20dp"
-                android:text="STATISTICS"
-                android:onClick="openStats"
-                android:textColor="#E8FF85BE"
-                android:textSize="25sp"
-                android:textStyle="bold" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginBottom="60dp"
+            android:background="@drawable/white_button"
+            android:fontFamily="@font/be_honest"
+            android:onClick="openStats"
+            android:paddingVertical="20dp"
+            android:text="STATISTICS"
+            android:textColor="#E8FF85BE"
+            android:textSize="25sp"
+            android:textStyle="bold" />
 
-        </LinearLayout>
+    </LinearLayout>
 
     <TextView
         android:id="@+id/nickname"
@@ -146,16 +146,15 @@
         android:fontFamily="@font/be_honest"
         android:text="Nickname"
         android:textColor="#FFFFFF"
-        android:textSize="16sp"
+        android:textSize="25sp"
         android:textStyle="bold"
-        android:typeface="normal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/edit"
-        android:layout_width="16dp"
-        android:layout_height="16dp"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="10dp"
         android:onClick="change"

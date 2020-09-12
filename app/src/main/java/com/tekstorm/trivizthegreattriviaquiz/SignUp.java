@@ -7,6 +7,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -52,19 +53,27 @@ SharedPreferences sharedPreferences;
         email=emailText.getText().toString();
         String password=passwordText.getText().toString();
         String nickname=nicknameText.getText().toString();
+
+        /*------------Animation View loading----------------*/
         LottieAnimationView animationView=(LottieAnimationView) findViewById(R.id.lottieAnimationView);
         animationView.setVisibility(View.VISIBLE);
         Button signInButton=findViewById(R.id.signup_btn);
         signInButton.setVisibility(View.GONE);
+
+
+        /*------------Animation View loading----------------*/
         final Map<String, Object> user_details = new HashMap<>();
         user_details.put("email", email);
         user_details.put("nickname", nickname);
-        if(email.equals("") || password.equals("")){
+
+
+
+        if(email.equals("") || password.equals("") || nickname.equals("")){
 
             signInButton.setVisibility(View.VISIBLE);
 
             animationView.setVisibility(View.GONE);
-            Toast.makeText(this, "Please enter your email address and password!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please enter your nickname, email address and password!", Toast.LENGTH_SHORT).show();
             return;
         }
         mAuth.createUserWithEmailAndPassword(email, password)
@@ -81,19 +90,10 @@ SharedPreferences sharedPreferences;
                                             if (task.isSuccessful()) {
                                                 Log.d("Email Verification", "Email sent.");
                                                 Toast.makeText(SignUp.this, "Verification email sent!", Toast.LENGTH_SHORT).show();
-                                                db.collection("users").add(user_details)
-                                                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                                            @Override
-                                                            public void onSuccess(DocumentReference documentReference) {
 
-                                                            }
-                                                        })
-                                                        .addOnFailureListener(new OnFailureListener() {
-                                                            @Override
-                                                            public void onFailure(@NonNull Exception e) {
-                                                                Log.w("failed", "Error adding document", e);
-                                                            }
-                                                        });
+
+                                                db.collection("users").document(email).set(user_details);
+
 
                                                 db.collection("users").document(email).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                                                     @SuppressLint("CommitPrefEdits")
@@ -103,14 +103,15 @@ SharedPreferences sharedPreferences;
                                                             DocumentSnapshot document = task.getResult();
                                                             if (document.exists()) {
                                                                 sharedPreferences.edit().putString("musicToggle", "0").apply();
+                                                                sharedPreferences.edit().putString("soundToggle", "0").apply();
                                                                 String user_email=document.getString("email");
-                                                                String nickname=document.getString("nickname");
-                                                                Log.d("TAG", "DocumentSnapshot data: " + user_email);
+                                                                String user_nickname=document.getString("nickname");
                                                                 sharedPreferences.edit().putString("email",user_email).apply();
-                                                                Log.d("share", "DocumentSnapshot data: " + sharedPreferences.getString("email",""));
-                                                                Log.d("TAG", "DocumentSnapshot data: " + nickname);
-                                                                sharedPreferences.edit().putString("nickname",nickname).apply();
+                                                                Log.d("TAG", "DocumentSnapshot data: " + sharedPreferences.getString("email",""));
+                                                                sharedPreferences.edit().putString("nickname",user_nickname).apply();
+                                                                StaticConstants.user_nickname=sharedPreferences.getString("nickname","");
                                                                 Log.d("share", "DocumentSnapshot data: " + sharedPreferences.getString("nickname",""));
+                                                                startActivity(new Intent(SignUp.this,Login.class));
                                                             } else {
                                                                 Log.d("TAG", "No such document");
                                                             }
@@ -127,7 +128,7 @@ SharedPreferences sharedPreferences;
 
 
 
-                            startActivity(new Intent(SignUp.this,MainActivity.class));
+
                         } else {
                             Button signInButton=findViewById(R.id.signup_btn);
                             signInButton.setVisibility(View.VISIBLE);
@@ -145,6 +146,13 @@ SharedPreferences sharedPreferences;
                 });
     }
 
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(newBase);
+        final Configuration override = new Configuration(newBase.getResources().getConfiguration());
+        override.fontScale = 1.0f;
+        applyOverrideConfiguration(override);
+    }
 
     public void signIn(View view) {
 

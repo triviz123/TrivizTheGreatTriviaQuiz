@@ -5,15 +5,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.Objects;
 
 import static java.lang.Thread.sleep;
 
@@ -27,18 +32,23 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
 
 
         sharedPreferences = this.getSharedPreferences("com.tekstorm.trivizthegreattriviaquiz", Context.MODE_PRIVATE);
         myVib = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
-
-
-        TextView nickname = findViewById(R.id.nickname);
-        nickname.setText(sharedPreferences.getString("nickname",""));
         StaticConstants.email=sharedPreferences.getString("email","");
         StaticConstants.user_nickname=sharedPreferences.getString("nickname","");
 
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(newBase);
+        final Configuration override = new Configuration(newBase.getResources().getConfiguration());
+        override.fontScale = 1.0f;
+        applyOverrideConfiguration(override);
     }
 
 
@@ -111,9 +121,6 @@ public class MainActivity extends AppCompatActivity {
         }
         ChangeNickname changeNickname=new ChangeNickname();
         changeNickname.show(getSupportFragmentManager(),"Change Nickname");
-        TextView nickname = findViewById(R.id.nickname);
-        nickname.setText(sharedPreferences.getString("nickname",""));
-
     }
 
     @Override
@@ -126,15 +133,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        sharedPreferences = this.getSharedPreferences("com.tekstorm.trivizthegreattriviaquiz", Context.MODE_PRIVATE);
         mainMusic=MediaPlayer.create(this, R.raw.main_menu_music);
         if(sharedPreferences.getString("musicToggle","").equals("0"))
         {
             mainMusic.start();
             mainMusic.setLooping(true);
         }
-
         TextView nickname = findViewById(R.id.nickname);
         nickname.setText(sharedPreferences.getString("nickname",""));
+        Log.d("tag1", sharedPreferences.getString("nickname", ""));
 
 
     }
