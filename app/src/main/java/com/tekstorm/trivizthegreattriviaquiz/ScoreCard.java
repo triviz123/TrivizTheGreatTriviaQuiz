@@ -57,7 +57,10 @@ public class ScoreCard extends AppCompatDialogFragment {
 
                 QuestionAnswer.gameplayMusic.stop();
 
-                startActivity(new Intent(getContext(),MainActivity.class));
+
+
+
+                //startActivity(new Intent(getContext(),MainActivity.class));
             }
         });
 

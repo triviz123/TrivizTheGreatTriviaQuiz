@@ -1,5 +1,6 @@
 package com.tekstorm.trivizthegreattriviaquiz;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -28,6 +29,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -44,12 +49,11 @@ public class QuestionAnswer extends AppCompatActivity {
     static MediaPlayer gameplayMusic;
     int quesNumber=0;
     TextView question,answer1,answer2,answer3, answer4, quesNum,scoreView;
-    static int score=0;
     static CountDownTimer timer;
     private Vibrator myVib;
-    String[] s1;
+    static int corrects=0,skips=0, score=0;
     SharedPreferences sharedPreferences;
-
+    JSONObject response1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,13 +80,10 @@ public class QuestionAnswer extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 Log.d("dasdash",response.toString());
+                response1=response;
+                gettingValues();
 
-                setContentView(R.layout.activity_question_answer);
-                try {
-                    jsonParser(response);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+
             }
         }, new Response.ErrorListener() {
             @Override
@@ -112,6 +113,40 @@ public class QuestionAnswer extends AppCompatActivity {
             }
         });
         requestQueue.add(jsonObjectRequest);
+
+    }
+
+    private void gettingValues() {
+        FirebaseFirestore  db = FirebaseFirestore.getInstance();
+        String email=sharedPreferences.getString("email","");
+        db.collection("users").document(email).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @SuppressLint("CommitPrefEdits")
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        StaticConstants.level=document.getString("level");
+                        StaticConstants.correct=document.getString("correct");
+                        StaticConstants.total=document.getString("total");
+                        StaticConstants.skip=document.getString("skip");
+                        Log.d("params",StaticConstants.level+StaticConstants.correct+StaticConstants.total+StaticConstants.skip);
+                        setContentView(R.layout.activity_question_answer);
+                        try {
+
+                            jsonParser(response1);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        Log.d("TAG", "No such document");
+                    }
+                } else {
+                    setContentView(R.layout.loading_or_error);
+                    Log.d("TAG", "get failed with ", task.getException());
+                }
+            }
+        });
 
     }
 
@@ -310,6 +345,7 @@ public class QuestionAnswer extends AppCompatActivity {
         if(answerSelected.getText().toString().equals(arr[quesNumber][1]))
         {
             score+=10;
+            corrects++;
             answerSelected.setBackgroundResource(R.drawable.correct_answer);
 
 
@@ -355,6 +391,7 @@ public class QuestionAnswer extends AppCompatActivity {
 
     public void skip(View view) throws InterruptedException {
         timer.cancel();
+        skips++;
         myVib.vibrate(30);
         if(sharedPreferences.getString("soundToggle","").equals("0"))
         {
