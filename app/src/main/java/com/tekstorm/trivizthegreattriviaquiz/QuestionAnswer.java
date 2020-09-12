@@ -141,7 +141,7 @@ public class QuestionAnswer extends AppCompatActivity {
         /*if (quesNumber != 0) {
             int x=delayThread();
         }*/
-         currentThread().sleep(500);
+
 
                 quesNum=findViewById(R.id.question_number);
                 scoreView=findViewById(R.id.score);
@@ -331,8 +331,15 @@ public class QuestionAnswer extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        gameplayMusic.stop();
+    }
+
     private int delayThread() throws InterruptedException {
-        Thread.currentThread().sleep(1000);
+        Thread.currentThread();
+        sleep(1000);
         return 1;
     }
 

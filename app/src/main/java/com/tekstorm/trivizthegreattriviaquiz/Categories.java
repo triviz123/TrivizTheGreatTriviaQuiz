@@ -76,6 +76,12 @@ public class Categories extends AppCompatActivity {
         mainMusic.stop();
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mainMusic.stop();
+    }
+
     public void categorySelect(View view) {
 
         myVib.vibrate(30);
