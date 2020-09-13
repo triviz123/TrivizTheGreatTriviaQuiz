@@ -32,7 +32,7 @@
             android:textSize="30sp"
             android:textStyle="bold"
             android:fontFamily="@font/m_semibold"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/lightBlue"
 
             android:layout_marginBottom="10dp"
             />
@@ -47,9 +47,178 @@
             android:textSize="40sp"
             android:textStyle="bold"
             android:fontFamily="@font/m_black"
-            android:textColor="@color/colorPrimaryDark"
-            android:layout_marginBottom="20dp"
+            android:textColor="@color/lightBlue"
+            android:layout_marginBottom="15dp"
             />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+
+
+            android:orientation="horizontal">
+
+            <TextView
+
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:fontFamily="@font/m_semibold"
+                android:paddingHorizontal="10dp"
+                android:text="Total Questions :"
+                android:textColor="#5C9DFF"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+
+
+            <TextView
+                android:id="@+id/totalscore"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                android:text="55"
+                android:fontFamily="@font/m_bold"
+                android:paddingHorizontal="10dp"
+                android:textColor="#373737"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
+
+            <TextView
+
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:fontFamily="@font/m_semibold"
+                android:paddingHorizontal="10dp"
+                android:text="Correct Answer :"
+                android:textColor="#5C9DFF"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+
+
+            <TextView
+                android:id="@+id/correctscore"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                android:text="55"
+                android:fontFamily="@font/m_bold"
+                android:paddingHorizontal="10dp"
+                android:textColor="#26BC2C"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+
+            android:layout_marginTop="15dp"
+
+            android:orientation="horizontal">
+
+            <TextView
+
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:fontFamily="@font/m_semibold"
+                android:paddingHorizontal="10dp"
+                android:text="Wrong Answers :"
+                android:textColor="#5C9DFF"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+
+
+            <TextView
+                android:id="@+id/wrongscore"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                android:text="55"
+                android:fontFamily="@font/m_bold"
+                android:paddingHorizontal="10dp"
+                android:textColor="#FF2828"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="30dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:fontFamily="@font/m_semibold"
+                android:paddingHorizontal="10dp"
+                android:text="Skip :"
+                android:textColor="#5C9DFF"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+
+
+            <TextView
+                android:id="@+id/skipscore"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                android:text="55"
+                android:fontFamily="@font/m_bold"
+                android:paddingHorizontal="10dp"
+                android:textColor="#F68F14"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
 
 
 
@@ -63,8 +232,8 @@
             android:text="Main Menu"
             android:textSize="18sp"
             android:fontFamily="@font/m_semibold"
-            android:layout_marginBottom="30dp"
-            android:background="@drawable/signin_signup_button"/>
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/music_toggle"/>
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
