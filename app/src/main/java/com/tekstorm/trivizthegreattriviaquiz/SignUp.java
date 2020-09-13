@@ -65,7 +65,7 @@ SharedPreferences sharedPreferences;
         final Map<String, Object> user_details = new HashMap<>();
         user_details.put("email", email);
         user_details.put("nickname", nickname);
-        user_details.put("level","Newbie");
+        user_details.put("level","Newbie : Level I");
         user_details.put("total","0");
         user_details.put("correct","0");
         user_details.put("skip","0");

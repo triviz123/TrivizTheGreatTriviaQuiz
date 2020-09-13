@@ -346,13 +346,13 @@ public class QuestionAnswer extends AppCompatActivity {
         {
             score+=10;
             corrects++;
-            answerSelected.setBackgroundResource(R.drawable.correct_answer);
+            //answerSelected.setBackgroundResource(R.drawable.correct_answer);
 
 
         }
         else
         {
-            answerSelected.setBackgroundResource(R.drawable.wrong_answer);
+            //answerSelected.setBackgroundResource(R.drawable.wrong_answer);
         }
 
 

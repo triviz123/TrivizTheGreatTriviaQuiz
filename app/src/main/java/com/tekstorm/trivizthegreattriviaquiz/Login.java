@@ -48,6 +48,7 @@ public class Login extends AppCompatActivity {
         {
             startActivity(new Intent(Login.this,MainActivity.class));
         }
+
     }
 
     @Override
@@ -58,11 +59,8 @@ public class Login extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         sharedPreferences = this.getSharedPreferences("com.tekstorm.trivizthegreattriviaquiz", Context.MODE_PRIVATE);
 
-
         emailText=findViewById(R.id.emailid);
         passwordText=findViewById(R.id.password);
-
-
 
     }
 
@@ -102,14 +100,14 @@ public class Login extends AppCompatActivity {
                                         DocumentSnapshot document = task.getResult();
                                         if (document.exists()) {
                                             String user_email=document.getString("email");
-                                            String nickname=document.getString("nickname");
-                                            sharedPreferences.edit().putString("musicToggle", "0").apply();
-                                            sharedPreferences.edit().putString("soundToggle", "0").apply();
+                                            String user_nickname=document.getString("nickname");
                                             Log.d("TAG", user_email);
                                             sharedPreferences.edit().putString("email", user_email).apply();
                                             Log.d("share", "DocumentSnapshot data: " + sharedPreferences.getString("email",""));
-                                            Log.d("TAG", nickname);
-                                            sharedPreferences.edit().putString("nickname", nickname).apply();
+                                            Log.d("TAG", user_nickname);
+                                            sharedPreferences.edit().putString("nickname",user_nickname).apply();
+                                            StaticConstants.user_nickname=sharedPreferences.getString("nickname","");
+                                            sharedPreferences.edit().putString("nickname", user_nickname).apply();
                                             Log.d("share", "DocumentSnapshot data: " + sharedPreferences.getString("nickname",""));
                                         } else {
                                             Log.d("TAG", "No such document");
@@ -117,10 +115,11 @@ public class Login extends AppCompatActivity {
                                     } else {
                                         Log.d("TAG", "get failed with ", task.getException());
                                     }
+                                    startActivity(new Intent(Login.this,MainActivity.class));
                                 }
                             });
 
-                            startActivity(new Intent(Login.this,MainActivity.class));
+
 
                         } else {
                             Button signInButton=findViewById(R.id.signin_btn);

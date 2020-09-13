@@ -58,10 +58,13 @@ public class QuestionCount extends AppCompatDialogFragment {
             button2.setBackgroundResource(R.drawable.signin_signup_button);
             button2.setTextColor(Color.WHITE);
         }
-        else
+        else if(StaticConstants.numberOfQuestions.equals("20"))
         {
             button3.setBackgroundResource(R.drawable.signin_signup_button);
             button3.setTextColor(Color.WHITE);
+        }
+        else {
+
         }
 
 

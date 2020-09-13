@@ -3,16 +3,21 @@ package com.tekstorm.trivizthegreattriviaquiz;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
@@ -30,7 +35,7 @@ public class ScoreCard extends AppCompatDialogFragment {
 
     private Vibrator myVib;
     SharedPreferences sharedPreferences;
-
+    TextView totalText,correctText,wrongText,skipText;
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
@@ -38,6 +43,16 @@ public class ScoreCard extends AppCompatDialogFragment {
 
         LayoutInflater inflater=getActivity().getLayoutInflater();
         View view=inflater.inflate(R.layout.score_card,null);
+        builder.setCancelable(false);
+
+        super.onCreate(savedInstanceState);
+        builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialogInterface) {
+                startActivity(new Intent(getContext(),MainActivity.class));
+            }
+        });
+
         builder.setView(view);
 
         sharedPreferences = getContext().getSharedPreferences("com.tekstorm.trivizthegreattriviaquiz", Context.MODE_PRIVATE);
@@ -46,6 +61,18 @@ public class ScoreCard extends AppCompatDialogFragment {
         mainButton=view.findViewById(R.id.mainmenu);
         scoreCard=view.findViewById(R.id.scoreCard);
         scoreCard.setText((QuestionAnswer.score+" POINTS"));
+
+
+        totalText=view.findViewById(R.id.totalscore);
+        correctText=view.findViewById(R.id.correctscore);
+        wrongText=view.findViewById(R.id.wrongscore);
+        skipText=view.findViewById(R.id.skipscore);
+
+
+        totalText.setText(StaticConstants.numberOfQuestions);
+        correctText.setText(String.valueOf(QuestionAnswer.corrects));
+        wrongText.setText(String.valueOf(Integer.parseInt(StaticConstants.numberOfQuestions)-QuestionAnswer.corrects-QuestionAnswer.skips));
+        skipText.setText(String.valueOf(QuestionAnswer.skips));
 
         mainButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,18 +110,73 @@ public class ScoreCard extends AppCompatDialogFragment {
         int newskip=QuestionAnswer.skips+Integer.parseInt(StaticConstants.skip);
         Log.d("abc",""+newcorrect+newskip+newtotal);
         String newlevel;
-        if(newcorrect<10)
+
+        if(newcorrect<50)
         {
-            newlevel="Newbie";
+            newlevel="Newbie : Level I";
         }
-        else if(newcorrect < 50)
+        else if(newcorrect < 100)
         {
-            newlevel="Beginner";
+            newlevel="Newbie : Level II";
+        }
+        else if(newcorrect < 300)
+        {
+            newlevel="Newbie : Level III";
+        }
+        else if(newcorrect<500)
+        {
+            newlevel="Beginner : Level I";
+        }
+        else if(newcorrect < 800)
+        {
+            newlevel="Beginner : Level II";
+        }
+        else if(newcorrect < 1200)
+        {
+            newlevel="Beginner : Level III";
+        }
+        else if(newcorrect<1600)
+        {
+            newlevel="Intermediate : Level I";
+        }
+        else if(newcorrect < 2000)
+        {
+            newlevel="Intermediate : Level II";
+        }
+        else if(newcorrect < 2500)
+        {
+            newlevel="Intermediate : Level III";
+        }
+        else if(newcorrect< 3200)
+        {
+            newlevel="Pro-Quizzer : Level I";
+        }
+        else if(newcorrect < 4000)
+        {
+            newlevel="Pro-Quizzer : Level II";
+        }
+        else if(newcorrect < 5000)
+        {
+            newlevel="Pro-Quizzer : Level III";
+        }
+        else if(newcorrect< 6000)
+        {
+            newlevel="Veteran : Level I";
+        }
+        else if(newcorrect < 8000)
+        {
+            newlevel="Veteran : Level II";
+        }
+        else if(newcorrect < 10000)
+        {
+            newlevel="Veteran : Level III";
         }
         else
         {
-            newlevel="Pro";
+            newlevel="Quiz Master";
         }
+
+
 
 
         db.collection("users").document(email).update(
@@ -106,18 +188,21 @@ public class ScoreCard extends AppCompatDialogFragment {
             @Override
             public void onSuccess(Void aVoid) {
                 Log.d("yay", "DocumentSnapshot successfully updated!");
-                startActivity(new Intent(getContext(),MainActivity.class));
-            }
-        })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w("nooo", "Error updating document", e);
-                    }
-                });
 
+            }
+        });
+
+        startActivity(new Intent(getContext(),MainActivity.class));
 
     }
 
+    @Override
+    public void onDismiss(@NonNull DialogInterface dialog) {
+        startActivity(new Intent(getContext(),MainActivity.class));
+    }
 
+    @Override
+    public void onCancel(@NonNull DialogInterface dialog) {
+        startActivity(new Intent(getContext(),MainActivity.class));
+    }
 }

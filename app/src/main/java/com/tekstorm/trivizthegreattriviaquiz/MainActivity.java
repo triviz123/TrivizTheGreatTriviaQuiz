@@ -1,7 +1,9 @@
 package com.tekstorm.trivizthegreattriviaquiz;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,10 +15,15 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Objects;
 
@@ -37,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         sharedPreferences = this.getSharedPreferences("com.tekstorm.trivizthegreattriviaquiz", Context.MODE_PRIVATE);
         myVib = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
         StaticConstants.email=sharedPreferences.getString("email","");
-        StaticConstants.user_nickname=sharedPreferences.getString("nickname","");
+
 
     }
 
@@ -83,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
             MediaPlayer buttonClick=MediaPlayer.create(this, R.raw.button_click);
             buttonClick.start();
         }
-        if(!StaticConstants.cat.equals("0") && QuestionCount.c2==0)
+        if(!StaticConstants.cat.equals("0") && StaticConstants.numberOfQuestions.equals("30"))
         {
             StaticConstants.numberOfQuestions="10";
         }
@@ -94,6 +101,16 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        myVib.vibrate(30);
+        if(sharedPreferences.getString("soundToggle","").equals("0"))
+        {
+            MediaPlayer buttonClick=MediaPlayer.create(this, R.raw.button_click);
+            buttonClick.start();
+        }
+
+        ExitGame exit=new ExitGame();
+        exit.show(getSupportFragmentManager(),"Exit");
+
 
     }
 
@@ -140,14 +157,57 @@ public class MainActivity extends AppCompatActivity {
         }
         TextView nickname = findViewById(R.id.nickname);
         nickname.setText(sharedPreferences.getString("nickname",""));
-        Log.d("tag1", sharedPreferences.getString("nickname", ""));
-
-
     }
 
 
     public void openStats(View view) {
-        Statistics statistics=new Statistics();
-        statistics.show(getSupportFragmentManager(),"Statistics");
+
+        myVib.vibrate(30);
+        if(sharedPreferences.getString("soundToggle","").equals("0"))
+        {
+            MediaPlayer buttonClick=MediaPlayer.create(this, R.raw.button_click);
+            buttonClick.start();
+        }
+
+        FirebaseFirestore db=FirebaseFirestore.getInstance();
+        db.collection("users").document(StaticConstants.email).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @SuppressLint("CommitPrefEdits")
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Statistics.level=document.getString("level");
+                        Statistics.total=Integer.parseInt(Objects.requireNonNull(document.getString("total")));
+                        Statistics.correct=Integer.parseInt(Objects.requireNonNull(document.getString("correct")));
+                        Statistics.skip=Integer.parseInt(Objects.requireNonNull(document.getString("skip")));
+                        Log.d("tag2",Statistics.level+Statistics.total+Statistics.correct+Statistics.skip);
+                        Statistics statistics = new Statistics();
+                        statistics.show(getSupportFragmentManager(), "Statistics");
+
+                    } else {
+                        Log.d("TAG", "No such document");
+
+                    }
+                } else {
+                    Toast.makeText(MainActivity.this, "Error fetching data! Try again later.", Toast.LENGTH_SHORT).show();
+
+                }
+
+
+
+
+
+            }
+        });
+
+
+
+
+
+
+
+
+
     }
 }
