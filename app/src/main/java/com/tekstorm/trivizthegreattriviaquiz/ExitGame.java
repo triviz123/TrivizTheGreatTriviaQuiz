@@ -26,6 +26,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.Objects;
+
 import static android.content.Context.VIBRATOR_SERVICE;
 
 public class ExitGame extends AppCompatDialogFragment {
@@ -58,8 +60,14 @@ public class ExitGame extends AppCompatDialogFragment {
                     buttonClick.start();
                 }
                 MainActivity.mainMusic.stop();
-                ExitGame.super.onStop();
+                dismiss();
+                Objects.requireNonNull(getActivity()).finishAndRemoveTask();
+                //System.exit(0);
 
+                android.os.Process.killProcess(android.os.Process.myUid());
+                Intent intent = new Intent(Intent.ACTION_MAIN);
+                intent.addCategory(Intent.CATEGORY_HOME);
+                startActivity(intent);
 
             }
         });

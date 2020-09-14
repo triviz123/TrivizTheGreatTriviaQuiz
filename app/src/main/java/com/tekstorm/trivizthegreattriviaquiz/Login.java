@@ -34,7 +34,7 @@ import java.util.Objects;
 
 public class Login extends AppCompatActivity {
 
-    EditText emailText, passwordText,resetPassword_email;
+    EditText emailText, passwordText;
     private FirebaseAuth mAuth;
     String email,password;
     FirebaseFirestore db;
@@ -115,7 +115,9 @@ public class Login extends AppCompatActivity {
                                     } else {
                                         Log.d("TAG", "get failed with ", task.getException());
                                     }
-                                    startActivity(new Intent(Login.this,MainActivity.class));
+
+                                   startActivity(new Intent(Login.this, MainActivity.class));
+
                                 }
                             });
 
