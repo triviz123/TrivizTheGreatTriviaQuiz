@@ -52,9 +52,10 @@ public class QuestionAnswer extends AppCompatActivity {
     TextView question,answer1,answer2,answer3, answer4, quesNum,scoreView;
     static CountDownTimer timer;
     private Vibrator myVib;
-    static int corrects=0,skips=0, score=0;
+    static int corrects=0,skips=0, score=0, wrongs=0;
     SharedPreferences sharedPreferences;
     JSONObject response1;
+    String[] s;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -174,7 +175,7 @@ public class QuestionAnswer extends AppCompatActivity {
 
 
 
-    public void display( String[] s) throws InterruptedException {
+    public void display( String[] s1) throws InterruptedException {
         /*if (quesNumber != 0) {
             int x=delayThread();
         }*/
@@ -188,18 +189,23 @@ public class QuestionAnswer extends AppCompatActivity {
                 answer3=findViewById(R.id.answer3);
                 answer4=findViewById(R.id.answer4);
                 String str= (quesNumber+1) +"/"+StaticConstants.numberOfQuestions;
-                quesNum.setText(str);
+                //quesNum.setText(str);
                 scoreView.setText(String.valueOf(score));
-                question.setText(s[0]);
-                answer1.setText(s[1]);
-                answer2.setText(s[2]);
-                answer3.setText(s[3]);
-                answer4.setText(s[4]);
+                if(quesNumber==0) {
+                    question.setText(s1[0]);
+                    answer1.setText(s1[1]);
+                    answer2.setText(s1[2]);
+                    answer3.setText(s1[3]);
+                    answer4.setText(s1[4]);
+                }
+                /*Animation anim= AnimationUtils.loadAnimation(QuestionAnswer.this,R.anim.ques_animation);
+                question.setAnimation(anim);
+                answer1.setAnimation(anim);
+                answer2.setAnimation(anim);
+                answer3.setAnimation(anim);
+                answer4.setAnimation(anim);*/
 
-                answer1.setBackgroundResource(R.drawable.answer_buttons);
-                answer2.setBackgroundResource(R.drawable.answer_buttons);
-                answer3.setBackgroundResource(R.drawable.answer_buttons);
-                answer4.setBackgroundResource(R.drawable.answer_buttons);
+
 
                 timer.start();
 
@@ -275,12 +281,32 @@ public class QuestionAnswer extends AppCompatActivity {
     }
 
     private void startTimer() {
-       timer=new CountDownTimer(16000,1000) {
+       timer=new CountDownTimer(17000,1000) {
             TextView timer=findViewById(R.id.timer);
             @Override
             public void onTick(long i)
             {
-                timer.setText(String.valueOf(i/1000));
+                if(i<16000) {
+                    timer.setText(String.valueOf(i / 1000));
+                    answer1.setBackgroundResource(R.drawable.answer_buttons);
+                    answer2.setBackgroundResource(R.drawable.answer_buttons);
+                    answer3.setBackgroundResource(R.drawable.answer_buttons);
+                    answer4.setBackgroundResource(R.drawable.answer_buttons);
+                    String str= (quesNumber+1) +"/"+StaticConstants.numberOfQuestions;
+                    quesNum.setText(str);
+                    scoreView.setText(String.valueOf(score));
+                    question.setText(s[0]);
+                    answer1.setText(s[1]);
+                    answer2.setText(s[2]);
+                    answer3.setText(s[3]);
+                    answer4.setText(s[4]);
+                    answer1.setClickable(true);
+                    answer2.setClickable(true);
+                    answer3.setClickable(true);
+                    answer4.setClickable(true);
+                }
+
+
             }
 
             @SuppressLint("SetTextI18n")
@@ -313,7 +339,7 @@ public class QuestionAnswer extends AppCompatActivity {
     private void gameplay() throws InterruptedException {
         Random rand=new Random();
         int locationOfCorrectAnswer=rand.nextInt(4)+1;
-        String[] s=new String[5];
+        s=new String[5];
         int c=2;
         s[0]=arr[quesNumber][0];
         //s[locationOfCorrectAnswer]=arr[quesNumber][1];
@@ -349,22 +375,27 @@ public class QuestionAnswer extends AppCompatActivity {
             }
             score+=10;
             corrects++;
-            Toast.makeText(this, "CORRECT!!!", Toast.LENGTH_SHORT).show();
-            //answerSelected.setBackgroundResource(R.drawable.correct_answer);
+            //Toast.makeText(this, "CORRECT!!!", Toast.LENGTH_SHORT).show();
+            answerSelected.setBackgroundResource(R.drawable.correct_answer);
 
 
         }
         else
         {
-            myVib.vibrate(3000);
+            myVib.vibrate(500);
             if(sharedPreferences.getString("soundToggle","").equals("0"))
             {
                 MediaPlayer buttonClick=MediaPlayer.create(this, R.raw.wrongbuzzer);
                 buttonClick.start();
             }
-            Toast.makeText(this, "WRONG!!!", Toast.LENGTH_SHORT).show();
-            //answerSelected.setBackgroundResource(R.drawable.wrong_answer);
+            //Toast.makeText(this, "WRONG!!!", Toast.LENGTH_SHORT).show();
+            answerSelected.setBackgroundResource(R.drawable.wrong_answer);
+            wrongs++;
         }
+        answer1.setClickable(false);
+        answer2.setClickable(false);
+        answer3.setClickable(false);
+        answer4.setClickable(false);
 
 
 

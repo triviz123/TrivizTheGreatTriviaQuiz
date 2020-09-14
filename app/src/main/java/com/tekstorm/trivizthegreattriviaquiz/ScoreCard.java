@@ -15,6 +15,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -74,7 +76,7 @@ public class ScoreCard extends AppCompatDialogFragment {
 
         totalText.setText(StaticConstants.numberOfQuestions);
         correctText.setText(String.valueOf(QuestionAnswer.corrects));
-        wrongText.setText(String.valueOf(Integer.parseInt(StaticConstants.numberOfQuestions)-QuestionAnswer.corrects-QuestionAnswer.skips));
+        wrongText.setText(String.valueOf(QuestionAnswer.wrongs));
         skipText.setText(String.valueOf(QuestionAnswer.skips));
 
 
@@ -153,6 +155,8 @@ public class ScoreCard extends AppCompatDialogFragment {
         {
             level2.setVisibility(View.VISIBLE);
             level2.setText("LEVEL UP!!!");
+            Animation anim= AnimationUtils.loadAnimation(getContext(),R.anim.triviz_animation);
+            level2.setAnimation(anim);
         }
 
         mainButton.setOnClickListener(new View.OnClickListener() {
