@@ -55,6 +55,26 @@
             android:layout_marginBottom="15dp"
             />
 
+        <TextView
+            android:id="@+id/level2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="55 POINTS"
+            android:shadowColor="#C466D4FF"
+            android:shadowDx="2.0"
+            android:shadowDy="2.0"
+            android:shadowRadius="2.0"
+            android:gravity="center"
+            android:visibility="gone"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/m_black"
+            android:textColor="#FF8B66"
+            android:layout_marginBottom="15dp"
+            />
+
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="30dp"
@@ -111,10 +131,10 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginEnd="10dp"
                 android:layout_weight="1"
-                android:gravity="center_vertical"
                 android:fontFamily="@font/m_semibold"
+                android:gravity="center_vertical"
                 android:paddingHorizontal="10dp"
-                android:text="Correct Answer :"
+                android:text="Correct Answers :"
                 android:textColor="#5C9DFF"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -196,10 +216,10 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginEnd="10dp"
                 android:layout_weight="1"
-                android:gravity="center_vertical"
                 android:fontFamily="@font/m_semibold"
+                android:gravity="center_vertical"
                 android:paddingHorizontal="10dp"
-                android:text="Skip :"
+                android:text="Skipped Questions :"
                 android:textColor="#5C9DFF"
                 android:textSize="18sp"
                 android:textStyle="bold" />

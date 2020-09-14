@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface.OnCancelListener;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -299,6 +300,7 @@ public class QuestionAnswer extends AppCompatActivity {
                     scoreCard.show(getSupportFragmentManager(),"Your Score");
                 }
             }
+
         };
 
 
@@ -347,40 +349,29 @@ public class QuestionAnswer extends AppCompatActivity {
             }
             score+=10;
             corrects++;
-            answerSelected.setBackgroundResource(R.drawable.correct_answer);
+            Toast.makeText(this, "CORRECT!!!", Toast.LENGTH_SHORT).show();
+            //answerSelected.setBackgroundResource(R.drawable.correct_answer);
 
 
         }
         else
         {
-            myVib.vibrate(60);
+            myVib.vibrate(3000);
             if(sharedPreferences.getString("soundToggle","").equals("0"))
             {
                 MediaPlayer buttonClick=MediaPlayer.create(this, R.raw.wrongbuzzer);
                 buttonClick.start();
             }
-            answerSelected.setBackgroundResource(R.drawable.wrong_answer);
+            Toast.makeText(this, "WRONG!!!", Toast.LENGTH_SHORT).show();
+            //answerSelected.setBackgroundResource(R.drawable.wrong_answer);
         }
-        Animation anim= AnimationUtils.loadAnimation(this,R.anim.triviz_animation);
-        answerSelected.setAnimation(anim);
-        anim.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
 
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
 
 
                 if(quesNumber<Integer.parseInt(StaticConstants.numberOfQuestions)-1)
                 {
                     quesNumber++;
-                    try {
-                        gameController();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+                    gameController();
 
                 }
                 else
@@ -389,14 +380,6 @@ public class QuestionAnswer extends AppCompatActivity {
                     scoreCard.show(getSupportFragmentManager(),"Your Score");
 
                 }
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-
-            }
-        });
-
 
 
 

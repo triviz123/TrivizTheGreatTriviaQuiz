@@ -1,5 +1,6 @@
 package com.tekstorm.trivizthegreattriviaquiz;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -32,10 +33,12 @@ public class ScoreCard extends AppCompatDialogFragment {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     Button mainButton;
     TextView scoreCard;
-
+    TextView level2;
     private Vibrator myVib;
     SharedPreferences sharedPreferences;
     TextView totalText,correctText,wrongText,skipText;
+    String newlevel;
+    int newtotal,newcorrect,newskip;
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
@@ -62,7 +65,7 @@ public class ScoreCard extends AppCompatDialogFragment {
         scoreCard=view.findViewById(R.id.scoreCard);
         scoreCard.setText((QuestionAnswer.score+" POINTS"));
 
-
+        level2 = (TextView) view.findViewById(R.id.level2);
         totalText=view.findViewById(R.id.totalscore);
         correctText=view.findViewById(R.id.correctscore);
         wrongText=view.findViewById(R.id.wrongscore);
@@ -74,42 +77,12 @@ public class ScoreCard extends AppCompatDialogFragment {
         wrongText.setText(String.valueOf(Integer.parseInt(StaticConstants.numberOfQuestions)-QuestionAnswer.corrects-QuestionAnswer.skips));
         skipText.setText(String.valueOf(QuestionAnswer.skips));
 
-        mainButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                myVib.vibrate(30);
-                if(sharedPreferences.getString("soundToggle","").equals("0"))
-                {
-                    MediaPlayer buttonClick=MediaPlayer.create(getContext(), R.raw.button_click);
-                    buttonClick.start();
-                }
-
-                QuestionAnswer.gameplayMusic.stop();
-
-                addToDatabase();
 
 
-                //startActivity(new Intent(getContext(),MainActivity.class));
-            }
+        newtotal=Integer.parseInt(StaticConstants.numberOfQuestions)+Integer.parseInt(StaticConstants.total);
+        newcorrect=QuestionAnswer.corrects+Integer.parseInt(StaticConstants.correct);
+        newskip=QuestionAnswer.skips+Integer.parseInt(StaticConstants.skip);
 
-
-        });
-
-
-
-        return builder.create();
-    }
-
-    private void addToDatabase() {
-        FirebaseFirestore  db = FirebaseFirestore.getInstance();
-        String email=sharedPreferences.getString("email","");
-        Log.d("abc",email);
-        int newtotal=Integer.parseInt(StaticConstants.numberOfQuestions)+Integer.parseInt(StaticConstants.total);
-        int newcorrect=QuestionAnswer.corrects+Integer.parseInt(StaticConstants.correct);
-        int newskip=QuestionAnswer.skips+Integer.parseInt(StaticConstants.skip);
-        Log.d("abc",""+newcorrect+newskip+newtotal);
-        String newlevel;
 
         if(newcorrect<50)
         {
@@ -161,20 +134,60 @@ public class ScoreCard extends AppCompatDialogFragment {
         }
         else if(newcorrect< 6000)
         {
-            newlevel="Veteran : Level I";
+            newlevel="Quiz Wizard : Level I";
         }
         else if(newcorrect < 8000)
         {
-            newlevel="Veteran : Level II";
+            newlevel="Quiz Wizard : Level II";
         }
         else if(newcorrect < 10000)
         {
-            newlevel="Veteran : Level III";
+            newlevel="Quiz Wizard : Level III";
         }
         else
         {
-            newlevel="Quiz Master";
+            newlevel="Triviz Quiz Legend";
         }
+
+        if(!StaticConstants.level.equals(newlevel))
+        {
+            level2.setVisibility(View.VISIBLE);
+            level2.setText("LEVEL UP!!!");
+        }
+
+        mainButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                myVib.vibrate(30);
+                if(sharedPreferences.getString("soundToggle","").equals("0"))
+                {
+                    MediaPlayer buttonClick=MediaPlayer.create(getContext(), R.raw.button_click);
+                    buttonClick.start();
+                }
+
+                QuestionAnswer.gameplayMusic.stop();
+
+                addToDatabase();
+
+
+                //startActivity(new Intent(getContext(),MainActivity.class));
+            }
+
+
+        });
+
+
+
+        return builder.create();
+    }
+
+    @SuppressLint("SetTextI18n")
+    private void addToDatabase() {
+        FirebaseFirestore  db = FirebaseFirestore.getInstance();
+        String email=sharedPreferences.getString("email","");
+        Log.d("abc",email);
+
 
 
 
@@ -183,8 +196,7 @@ public class ScoreCard extends AppCompatDialogFragment {
                 "total",String.valueOf(newtotal),
                 "correct",String.valueOf(newcorrect),
                 "skip",String.valueOf(newskip),
-                "level",newlevel
-                ).addOnSuccessListener(new OnSuccessListener<Void>() {
+                "level",newlevel).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 Log.d("yay", "DocumentSnapshot successfully updated!");
