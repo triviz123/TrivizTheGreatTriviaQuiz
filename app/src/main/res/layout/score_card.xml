@@ -31,7 +31,7 @@
             android:gravity="center"
             android:textSize="30sp"
             android:textStyle="bold"
-            android:fontFamily="@font/m_semibold"
+            android:fontFamily="@font/showg"
             android:textColor="@color/lightBlue"
 
             android:layout_marginBottom="10dp"
@@ -50,7 +50,7 @@
             android:gravity="center"
             android:textSize="40sp"
             android:textStyle="bold"
-            android:fontFamily="@font/m_black"
+            android:fontFamily="@font/showg"
             android:textColor="@color/lightBlue"
             android:layout_marginBottom="15dp"
             />
@@ -59,7 +59,7 @@
             android:id="@+id/level2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="55 POINTS"
+            android:text=""
             android:shadowColor="#C466D4FF"
             android:shadowDx="2.0"
             android:shadowDy="2.0"
@@ -68,7 +68,7 @@
             android:visibility="gone"
             android:textSize="40sp"
             android:textStyle="bold"
-            android:fontFamily="@font/m_black"
+            android:fontFamily="@font/showg"
             android:textColor="#FF8B66"
             android:layout_marginBottom="15dp"
             />

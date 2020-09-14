@@ -65,7 +65,7 @@
         android:layout_marginStart="64dp"
         android:layout_marginTop="325dp"
         android:layout_marginEnd="64dp"
-        android:fontFamily="@font/bau93"
+        android:fontFamily="@font/showg"
         android:gravity="center"
         android:shadowColor="#C48266FF"
         android:shadowDx="5.0"

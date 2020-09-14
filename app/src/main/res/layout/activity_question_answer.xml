@@ -26,7 +26,7 @@
                 android:layout_height="56dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="25dp"
-                android:fontFamily="@font/be_honest"
+                android:fontFamily="@font/showg"
                 android:gravity="center"
                 android:shadowColor="#C48266FF"
                 android:shadowDx="5.0"
