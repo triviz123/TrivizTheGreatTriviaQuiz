@@ -335,32 +335,52 @@ public class QuestionAnswer extends AppCompatActivity {
 
     public void checkAnswer(View view) throws InterruptedException {
         timer.cancel();
-        myVib.vibrate(30);
-        if(sharedPreferences.getString("soundToggle","").equals("0"))
-        {
-            MediaPlayer buttonClick=MediaPlayer.create(this, R.raw.button_click);
-            buttonClick.start();
-        }
+
         TextView answerSelected=(TextView) view;
         if(answerSelected.getText().toString().equals(arr[quesNumber][1]))
         {
+            myVib.vibrate(30);
+            if(sharedPreferences.getString("soundToggle","").equals("0"))
+            {
+                MediaPlayer buttonClick=MediaPlayer.create(this, R.raw.correctanswer);
+                buttonClick.start();
+            }
             score+=10;
             corrects++;
-            //answerSelected.setBackgroundResource(R.drawable.correct_answer);
+            answerSelected.setBackgroundResource(R.drawable.correct_answer);
 
 
         }
         else
         {
-            //answerSelected.setBackgroundResource(R.drawable.wrong_answer);
+            myVib.vibrate(60);
+            if(sharedPreferences.getString("soundToggle","").equals("0"))
+            {
+                MediaPlayer buttonClick=MediaPlayer.create(this, R.raw.wrongbuzzer);
+                buttonClick.start();
+            }
+            answerSelected.setBackgroundResource(R.drawable.wrong_answer);
         }
+        Animation anim= AnimationUtils.loadAnimation(this,R.anim.triviz_animation);
+        answerSelected.setAnimation(anim);
+        anim.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
 
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
 
 
                 if(quesNumber<Integer.parseInt(StaticConstants.numberOfQuestions)-1)
                 {
                     quesNumber++;
-                    gameController();
+                    try {
+                        gameController();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
 
                 }
                 else
@@ -369,6 +389,14 @@ public class QuestionAnswer extends AppCompatActivity {
                     scoreCard.show(getSupportFragmentManager(),"Your Score");
 
                 }
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
 
 
 

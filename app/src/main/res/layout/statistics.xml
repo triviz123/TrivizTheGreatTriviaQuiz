@@ -55,36 +55,27 @@
     android:id="@+id/chart1"
     android:layout_marginHorizontal="30dp"
     android:layout_width="match_parent"
-    android:layout_height="250dp"
+    android:layout_height="225dp"
     android:layout_marginBottom="15dp"
     />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             android:layout_marginHorizontal="30dp"
             android:orientation="horizontal">
 
 
-
-            <TextView
+            <ImageView
                 android:id="@+id/level"
                 android:layout_width="0dp"
-                android:layout_height="45dp"
+                android:layout_height="60dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginEnd="10dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:shadowColor="#C4937AFF"
-                android:shadowDx="3.0"
-                android:shadowDy="3.0"
-                android:shadowRadius="3.0"
-                android:text="Pro-Quizzer : Level III"
-                android:fontFamily="@font/be_honest"
                 android:paddingHorizontal="10dp"
-                android:textColor="#FFA473"
-                android:textSize="30sp"
-                android:textStyle="bold" />
+                android:scaleType="centerCrop" />
 
 
         </LinearLayout>

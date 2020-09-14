@@ -61,10 +61,10 @@ public class ExitGame extends AppCompatDialogFragment {
                 }
                 MainActivity.mainMusic.stop();
                 dismiss();
-                Objects.requireNonNull(getActivity()).finishAndRemoveTask();
+                //Objects.requireNonNull(getActivity()).finishAndRemoveTask();
                 //System.exit(0);
 
-                android.os.Process.killProcess(android.os.Process.myUid());
+                //android.os.Process.killProcess(android.os.Process.myUid());
                 Intent intent = new Intent(Intent.ACTION_MAIN);
                 intent.addCategory(Intent.CATEGORY_HOME);
                 startActivity(intent);

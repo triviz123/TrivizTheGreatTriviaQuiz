@@ -46,7 +46,13 @@ public class Login extends AppCompatActivity {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser!=null)
         {
+            if(currentUser.isEmailVerified()){
             startActivity(new Intent(Login.this,MainActivity.class));
+        }else
+            {
+                Toast.makeText(Login.this, "Please verify your email first!",
+                        Toast.LENGTH_SHORT).show();
+            }
         }
 
     }
@@ -88,49 +94,59 @@ public class Login extends AppCompatActivity {
                             Log.d("signin", "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
 
+                            if (user.isEmailVerified()) {
+                                sharedPreferences.edit().putString("musicToggle", "0").apply();
+                                sharedPreferences.edit().putString("soundToggle", "0").apply();
 
-                            sharedPreferences.edit().putString("musicToggle", "0").apply();
-                            sharedPreferences.edit().putString("soundToggle", "0").apply();
-
-                            db.collection("users").document(email).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                                @SuppressLint("CommitPrefEdits")
-                                @Override
-                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                    if (task.isSuccessful()) {
-                                        DocumentSnapshot document = task.getResult();
-                                        if (document.exists()) {
-                                            String user_email=document.getString("email");
-                                            String user_nickname=document.getString("nickname");
-                                            Log.d("TAG", user_email);
-                                            sharedPreferences.edit().putString("email", user_email).apply();
-                                            Log.d("share", "DocumentSnapshot data: " + sharedPreferences.getString("email",""));
-                                            Log.d("TAG", user_nickname);
-                                            sharedPreferences.edit().putString("nickname",user_nickname).apply();
-                                            StaticConstants.user_nickname=sharedPreferences.getString("nickname","");
-                                            sharedPreferences.edit().putString("nickname", user_nickname).apply();
-                                            Log.d("share", "DocumentSnapshot data: " + sharedPreferences.getString("nickname",""));
+                                db.collection("users").document(email).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                    @SuppressLint("CommitPrefEdits")
+                                    @Override
+                                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                        if (task.isSuccessful()) {
+                                            DocumentSnapshot document = task.getResult();
+                                            if (document.exists()) {
+                                                String user_email = document.getString("email");
+                                                String user_nickname = document.getString("nickname");
+                                                Log.d("TAG", user_email);
+                                                sharedPreferences.edit().putString("email", user_email).apply();
+                                                Log.d("share", "DocumentSnapshot data: " + sharedPreferences.getString("email", ""));
+                                                Log.d("TAG", user_nickname);
+                                                sharedPreferences.edit().putString("nickname", user_nickname).apply();
+                                                StaticConstants.user_nickname = sharedPreferences.getString("nickname", "");
+                                                sharedPreferences.edit().putString("nickname", user_nickname).apply();
+                                                Log.d("share", "DocumentSnapshot data: " + sharedPreferences.getString("nickname", ""));
+                                            } else {
+                                                Log.d("TAG", "No such document");
+                                            }
                                         } else {
-                                            Log.d("TAG", "No such document");
+                                            Log.d("TAG", "get failed with ", task.getException());
                                         }
-                                    } else {
-                                        Log.d("TAG", "get failed with ", task.getException());
+
+                                        startActivity(new Intent(Login.this, MainActivity.class));
                                     }
 
-                                   startActivity(new Intent(Login.this, MainActivity.class));
 
-                                }
-                            });
+                                });
 
 
-
-                        } else {
-                            Button signInButton=findViewById(R.id.signin_btn);
+                            } else {
+                                Button signInButton = findViewById(R.id.signin_btn);
+                                signInButton.setVisibility(View.VISIBLE);
+                                LottieAnimationView animationView = (LottieAnimationView) findViewById(R.id.lottieAnimationView);
+                                animationView.setVisibility(View.GONE);
+                                // If sign in fails, display a message to the user.
+                                Log.w("signin", "signInWithEmail:failure", task.getException());
+                                Toast.makeText(Login.this, "Error! No record found!",
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                        else
+                        {
+                            Button signInButton = findViewById(R.id.signin_btn);
                             signInButton.setVisibility(View.VISIBLE);
-                            LottieAnimationView animationView=(LottieAnimationView) findViewById(R.id.lottieAnimationView);
+                            LottieAnimationView animationView = (LottieAnimationView) findViewById(R.id.lottieAnimationView);
                             animationView.setVisibility(View.GONE);
-                            // If sign in fails, display a message to the user.
-                            Log.w("signin", "signInWithEmail:failure", task.getException());
-                            Toast.makeText(Login.this, "Error! No record found!",
+                            Toast.makeText(Login.this, "Please verify your email first!",
                                     Toast.LENGTH_SHORT).show();
                         }
 

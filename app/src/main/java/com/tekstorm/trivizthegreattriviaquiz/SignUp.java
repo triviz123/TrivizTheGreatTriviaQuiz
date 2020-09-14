@@ -145,7 +145,7 @@ SharedPreferences sharedPreferences;
                             startActivity(new Intent(SignUp.this,Login.class));
                         }
 
-                        // ...
+
                     }
                 });
     }

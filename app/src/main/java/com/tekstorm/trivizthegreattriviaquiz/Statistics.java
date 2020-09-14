@@ -23,26 +23,15 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
-
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.components.LegendEntry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.tekstorm.trivizthegreattriviaquiz.Login;
-import com.tekstorm.trivizthegreattriviaquiz.MainActivity;
-import com.tekstorm.trivizthegreattriviaquiz.R;
-
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 import static android.content.Context.VIBRATOR_SERVICE;
@@ -99,19 +88,86 @@ public class Statistics extends AppCompatDialogFragment {
         legend.setTextColor(R.color.lightBlue);
         legend.setWordWrapEnabled(true);
 
-        TextView totalText,correctText,wrongText,skipText,levelText;
+        TextView totalText,correctText,wrongText,skipText;
+        ImageView levelView=view.findViewById(R.id.level);
         totalText=view.findViewById(R.id.total);
         correctText=view.findViewById(R.id.correct);
         wrongText=view.findViewById(R.id.wrong);
         skipText=view.findViewById(R.id.skip);
-        levelText=view.findViewById(R.id.level);
+
 
 
         totalText.setText(String.valueOf(total));
         correctText.setText(String.valueOf(correct));
         wrongText.setText(String.valueOf(total-correct-skip));
         skipText.setText(String.valueOf(skip));
-        levelText.setText(level);
+
+
+
+        if(correct<50)
+        {
+            levelView.setImageResource(R.drawable.n1);
+        }
+        else if(correct < 100)
+        {
+            levelView.setImageResource(R.drawable.n2);
+        }
+        else if(correct < 300)
+        {
+            levelView.setImageResource(R.drawable.n3);
+        }
+        else if(correct<500)
+        {
+            levelView.setImageResource(R.drawable.b1);
+        }
+        else if(correct < 800)
+        {
+            levelView.setImageResource(R.drawable.b2);
+        }
+        else if(correct < 1200)
+        {
+            levelView.setImageResource(R.drawable.b3);
+        }
+        else if(correct<1600)
+        {
+            levelView.setImageResource(R.drawable.i1);
+        }
+        else if(correct < 2000)
+        {
+            levelView.setImageResource(R.drawable.i2);
+        }
+        else if(correct < 2500)
+        {
+            levelView.setImageResource(R.drawable.i3);
+        }
+        else if(correct< 3200)
+        {
+            levelView.setImageResource(R.drawable.p1);
+        }
+        else if(correct < 4000)
+        {
+            levelView.setImageResource(R.drawable.p2);
+        }
+        else if(correct < 5000)
+        {
+            levelView.setImageResource(R.drawable.p3);
+        }
+        else if(correct< 6000)
+        {
+            levelView.setImageResource(R.drawable.q1);
+        }
+        else if(correct < 8000)
+        {
+            levelView.setImageResource(R.drawable.q2);
+        }
+        else if(correct < 10000)
+        {
+            levelView.setImageResource(R.drawable.q3);
+        }
+        else
+        {
+            levelView.setImageResource(R.drawable.u);
+        }
 
 
         myVib = (Vibrator) getContext().getSystemService(VIBRATOR_SERVICE);
